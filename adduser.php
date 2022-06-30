@@ -48,8 +48,8 @@ background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);">
                 <div class="valid-feedback">
                 Looks good!
                 </div>
+                <div class="invalid-feedback">Please fill out this field.</div>
                 </div>
-
 
             
             <!-- username -->
@@ -64,7 +64,10 @@ background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);">
             <div class="form-outline mb-4">
             <label class="form-label font2" for="typePasswordX-2">Password</label>
             <input type="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Enter Your User Name , Please"/>
-            </div>
+            <div class="valid-feedback">Valid.</div>
+            <div class="invalid-feedback">Please fill out this field.</div>
+        </div>
+            
 
             <button class="btn btn-lg btn-block button_color" type="submit">Login</button>
 

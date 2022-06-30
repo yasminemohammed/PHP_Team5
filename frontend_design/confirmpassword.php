@@ -31,9 +31,9 @@ background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);">
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
           <div class="card-body p-5 text-center">
 
-            <h3 class="mb-5 font"></h3>
+            <h3 class="mb-5 font">Forget Password ?</h3>
             <hr>
-        <form actio="#" method="POST">
+        <form action="#" method="POST">
         <div class="form-outline mb-4">
             <label class="form-label font2" for="typePasswordX-2">Password</label>
             <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />

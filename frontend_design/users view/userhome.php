@@ -20,7 +20,7 @@
           text-decoration : none;
         }
         .align{
-        margin-left:900px;
+        margin-left: 900px;
         }
       .img{
         width:50%;
@@ -42,11 +42,8 @@
     <section  style=" height:100%;background-color: #D9AFD9;
         background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);">
 
-
-        <!-- navbar -->
-
-
-        <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+ <!-- Navbar -->
+ <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
                 <div class="container-fluid ">
                     <a class="navbar-brand" href="#">Cafetria</a>
                     <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
@@ -61,6 +58,7 @@
                         <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
 
+                      
                         <li class="nav-item">
                         <a class="nav-link" href="#">My Orders</a>
                         </li>
@@ -73,6 +71,12 @@
                 </nav>
 
 
+
+
+
+
+
+
                 <!-- home -->
 
 
@@ -80,7 +84,7 @@
 
    <div class="container">
 
-<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 row-cols-xl-5">
  
   <div class="col mb-4">
     <div class="card">
@@ -90,7 +94,7 @@
         <p class="card-text text-center">
 
        <div class="price">
-      <p>Price : $<span class="item_price">7</span></p>
+      <p>Price : $<span class="item_price">5</span></p>
       <p>Subtotal : <b>$<span class="total">0</span></b></p>
     </div>
     <div class="quantity">
@@ -130,7 +134,7 @@
         <p class="card-text text-center">
 
       <div class="price">
-      <p>Price : $<span class="item_price">7</span></p>
+      <p>Price : $<span class="item_price">8</span></p>
       <p>Subtotal : <b>$<span class="total">0</span></b></p>
       </div>
       <div class="quantity">
@@ -150,7 +154,7 @@
         <p class="card-text text-center">
 
       <div class="price">
-      <p>Price : $<span class="item_price">7</span></p>
+      <p>Price : $<span class="item_price">10</span></p>
       <p>Subtotal : <b>$<span class="total">0</span></b></p>
       </div>
       <div class="quantity">
@@ -170,7 +174,7 @@
         <p class="card-text text-center">
 
         <div class="price">
-        <p>Price : $<span class="item_price">7</span></p>
+        <p>Price : $<span class="item_price">15</span></p>
         <p>Subtotal : <b>$<span class="total">0</span></b></p>
         </div>
         <div class="quantity">
@@ -237,7 +241,6 @@
   </div>
   <div class="card-body">
     <p class="card-text">
-    <b>$<span class="summ">0</span></b>
 
     </p>
     <a href="#" class="btn btn-primary">Confirm</a>
@@ -275,8 +278,7 @@
 
 
 
-
-
       </script>
 
 </body>
+</html>

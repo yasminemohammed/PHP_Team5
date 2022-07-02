@@ -46,23 +46,23 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 align">
 
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="home.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="Products.php">Products</a>
+                        <a class="nav-link" href="#">Products</a>
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="Users.php">Users</a>
+                        <a class="nav-link" href="#">Users</a>
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="Manual Orders.php">Manual Orders</a>
+                        <a class="nav-link" href="#">Manual Orders</a>
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="Checks.php">Checks</a>
+                        <a class="nav-link" href="#">Checks</a>
                         </li>
                      
                     </ul>
@@ -167,9 +167,7 @@
             </div>
                 
 
-                    <button class="btn btn-lg btn-block button_color" type="submit">Add</button>
-                    <button class="btn btn-lg btn-block button_color" type="submit">Reset</button>
-
+                    <button class="btn btn-lg btn-block button_color" type="submit">Login</button>
 
                 </form>
                 </div>
@@ -188,4 +186,3 @@
 
 
 </body>
-</html>

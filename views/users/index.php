@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-get all users
+get all users <?php dump($users ?? "") ?>
+
 </body>
 </html>

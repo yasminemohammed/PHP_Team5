@@ -2,7 +2,8 @@
   "require": {
     "ext-pdo": "*",
     "vlucas/phpdotenv": "^5.3",
-    "symfony/var-dumper": "^6.1"
+    "symfony/var-dumper": "^6.1",
+    "pecee/simple-router": "4.3.7.2"
   },
   "autoload": {
     "psr-4": {

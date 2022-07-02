@@ -22,6 +22,9 @@
         .align{
         margin-left:900px;
         }
+      .img{
+        width:50%;
+      }
     </style>
   </head>
 <body>
@@ -64,11 +67,129 @@
 
 
                 <!-- home -->
-                
 
 
+
+
+   <div class="container">
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+ 
+  <div class="col mb-4">
+    <div class="card">
+      <img src="../images/tea.png" class="card-img-top img m-5" alt="Tea">
+      <div class="card-body">
+        <h5 class="card-title text-center">Tea</h5>
+        <p class="card-text text-center">
+
+       <div class="price">
+      <p>Price : $<span class="item_price">7</span></p>
+      <p>Subtotal : <b>$<span class="total">0</span></b></p>
+    </div>
+    <div class="quantity">
+      <span>quantity : </span>
+      <input type="number" class="num" oninput="calc(0)" min="0" max="100" value="0" />
+    </div>
+
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+    <img src="../images/coffee.png" class="card-img-top img m-5" alt="Coffee">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text text-center">
+
+      <div class="price">
+      <p>Price : $<span class="item_price">7</span></p>
+      <p>Subtotal : <b>$<span class="total">0</span></b></p>
+      </div>
+      <div class="quantity">
+      <span>quantity : </span>
+      <input type="number" class="num" oninput="calc(0)" min="0" max="100" value="0" />
+      </div>
+
+      </p>      
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+    <img src="../images/drink.png" class="card-img-top img m-5" alt="drink">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text text-center">
+
+      <div class="price">
+      <p>Price : $<span class="item_price">7</span></p>
+      <p>Subtotal : <b>$<span class="total">0</span></b></p>
+      </div>
+      <div class="quantity">
+      <span>quantity : </span>
+      <input type="number" class="num" oninput="calc(0)" min="0" max="100" value="0" />
+      </div>
+
+      </p>     
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+    <img src="../images/milk.png" class="card-img-top img m-5" alt="milk">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text text-center">
+
+      <div class="price">
+      <p>Price : $<span class="item_price">7</span></p>
+      <p>Subtotal : <b>$<span class="total">0</span></b></p>
+      </div>
+      <div class="quantity">
+      <span>quantity : </span>
+      <input type="number" class="num" oninput="calc(0)" min="0" max="100" value="0" />
+      </div>
+
+      </p>     
+      </div>
+    </div>
+  </div>
+  <div class="col mb-4">
+    <div class="card">
+    <img src="../images/soda.png" class="card-img-top img m-5" alt="soda">
+      <div class="card-body">
+        <h5 class="card-title">Card title</h5>
+        <p class="card-text text-center">
+
+        <div class="price">
+        <p>Price : $<span class="item_price">7</span></p>
+        <p>Subtotal : <b>$<span class="total">0</span></b></p>
+        </div>
+        <div class="quantity">
+        <span>quantity : </span>
+        <input type="number" class="num" oninput="calc(0)" min="0" max="100" value="0" />
+        </div>
+
+        </p>    
+          </div>
+    </div>
+  </div>
+</div>
+  
+  
+ 
+           
     </section>
 
-
+      <script>
+        function calc(n) {
+        var price = document.getElementsByClassName("item_price")[n].innerHTML;
+        var numofitems = document.getElementsByClassName("num")[n].value;
+        var total = parseFloat(price) * numofitems;
+        if (!isNaN(total))
+          document.getElementsByClassName("total")[n].innerHTML = total;
+}
+      </script>
 
 </body>

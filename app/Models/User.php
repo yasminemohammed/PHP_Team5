@@ -159,7 +159,6 @@ class User extends Model
         foreach ($attributes as $key => $value) {
             if (is_int($value)) {
                 $stmt->bindValue($key, $value, PDO::PARAM_INT);
-                dump('int');
             } else
                 $stmt->bindValue($key, $value);
         }

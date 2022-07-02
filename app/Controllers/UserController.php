@@ -16,7 +16,7 @@ class UserController
         return View::make('users' . DIRECTORY_SEPARATOR . 'index', ['users' => $users]);
     }
 
-    public function create($users): View
+    public function create(): View
     {
         return View::make('users' . DIRECTORY_SEPARATOR . 'create');
     }
@@ -44,9 +44,9 @@ class UserController
         header("Location: /users");
     }
 
-    public function edit($users): View
+    public function edit($id): View
     {
-        $user = User::getOneBy('id', $users);
+        $user = User::getOneBy('id', $id);
 
         if (!$user)
             header('Location: /');
@@ -54,7 +54,7 @@ class UserController
 
     }
 
-    public function update($users)
+    public function update($id)
     {
         $attributes = [];
         $attributes['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
@@ -73,14 +73,14 @@ class UserController
 
         $attributes['avatar'] = $avatar['name'];
 
-        User::update($attributes, $users);
+        User::update($attributes, $id);
 
         header("Location: /users");
     }
 
-    public function delete($users)
+    public function destroy($id)
     {
-        User::deleteById($users);
+        User::deleteById($id);
 
         header("Location: /users");
     }

@@ -8,8 +8,6 @@ $avatar = $user?->getAvatar() ?? "";
 $ext = $user?->getExt() ?? "";
 $roomNo = $user?->getRoomNo() ?? "";
 
-dump($roomNo);
-dump($avatar);
 
 ?>
 

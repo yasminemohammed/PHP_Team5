@@ -7,18 +7,14 @@ use App\View;
 
 class AdminCategoriesController
 {
-    public function create($admin): View
+    public function create(): View
     {
-        unset($admin);
-
         return View::make('admin' . DIRECTORY_SEPARATOR . 'categories' . DIRECTORY_SEPARATOR . 'create');
     }
 
 
-    public function store($admin)
+    public function store()
     {
-        unset($admin);
-
         $attributes = [];
 
         $attributes['name'] = $_POST['name'];

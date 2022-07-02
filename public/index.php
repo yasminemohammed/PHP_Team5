@@ -8,8 +8,7 @@ use App\Controllers\AdminCategoriesController;
 use App\Controllers\AdminProductsController;
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
-use App\Helpers\Utils;
-use App\Router;
+use Pecee\SimpleRouter\SimpleRouter;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
@@ -20,41 +19,27 @@ const STORAGE_PATH = __DIR__ . '/../storage';
 const VIEW_PATH = __DIR__ . '/../views';
 
 
-$params = Utils::parseUrl($_SERVER['REQUEST_URI']);
+SimpleRouter::get('/', [HomeController::class, 'index']);
 
-$router = new Router();
-
-$router
-    ->get('/', [HomeController::class, 'index'])
-
-    // users
-    ->get("/users/" . ($params[1] ?? ""), [UserController::class, 'show'])
-    ->get('/users', [UserController::class, 'index'])
-    ->post('/users', [UserController::class, 'store'])
-    ->delete("/users/" . ($params[1] ?? ""), [UserController::class, 'delete'])
-    ->put("/users/" . ($params[1] ?? ""), [UserController::class, 'update'])
-    ->get("/users/" . ($params[1] ?? "") . "/edit", [UserController::class, 'edit'])
-    ->get('/users/create', [UserController::class, 'create']);
+// users
+SimpleRouter::get('/users', [UserController::class, 'index']);
+SimpleRouter::get('/users/create', [UserController::class, 'create']);
+SimpleRouter::get("/users/{id}/edit", [UserController::class, 'edit']);
+SimpleRouter::post('/users', [UserController::class, 'store']);
+SimpleRouter::put("/users/{id}", [UserController::class, 'update']);
+SimpleRouter::delete("/users/{id}", [UserController::class, 'destroy']);
 
 //products
-->
-get('/admin/products', [AdminProductsController::class, 'index'])
-    ->post('/admin/products', [AdminProductsController::class, 'store'])
-    ->get('/admin/products/create', [AdminProductsController::class, 'create'])
-    ->delete('/admin/products/1', [AdminProductsController::class, 'destroy'])
+SimpleRouter::get('/admin/products', [AdminProductsController::class, 'index']);
+SimpleRouter::post('/admin/products', [AdminProductsController::class, 'store']);
+SimpleRouter::get('/admin/products/create', [AdminProductsController::class, 'create']);
+SimpleRouter::delete('/admin/products/{id}', [AdminProductsController::class, 'destroy']);
+
+// categories
+SimpleRouter::get('/admin/categories/create', [AdminCategoriesController::class, 'create']);
+SimpleRouter::post('/admin/categories', [AdminCategoriesController::class, 'store']);
+
+SimpleRouter::setDefaultNamespace('\App\Controllers');
 
 
-    // categories
-    ->get('/admin/categories/create', [AdminCategoriesController::class, 'create'])
-    ->post('/admin/categories', [AdminCategoriesController::class, 'store']);
-
-dump($_SERVER['REQUEST_URI']);
-dump($params);
-dump($_SERVER['REQUEST_METHOD']);
-dd('here');
-
-(new App(
-    $router,
-    ['uri' => ($_SERVER['REQUEST_URI'] != '/' ? rtrim($_SERVER['REQUEST_URI'], '/') : "/"), 'method' => ($_REQUEST['_method'] ?? $_SERVER['REQUEST_METHOD']), 'params' => $params],
-    new Config($_ENV)
-))->run();
+(new App(new Config($_ENV)))->run();

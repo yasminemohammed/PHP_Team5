@@ -8,25 +8,19 @@ use App\View;
 
 class AdminProductsController
 {
-    public function index($admin): View
+    public function index(): View
     {
-        unset($admin);
-
         return View::make('admin' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . 'index', ['products' => Product::all()]);
     }
 
-    public function create($admin): View
+    public function create(): View
     {
-        unset($admin);
         return View::make('admin' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . 'create', ['categories' => Category::all()]);
     }
 
-    public function store($admin)
+    public function store()
     {
-        unset($admin);
-
         $attributes = [];
-
         $attributes['name'] = $_POST['name'];
         $attributes['category_id'] = (int)$_POST['category_id'];
         $attributes['price'] = (int)$_POST['price'];
@@ -44,8 +38,10 @@ class AdminProductsController
         header("Location: /admin/products");
     }
 
-    public function destroy()
+    public function destroy($id)
     {
+        Product::deleteById($id);
 
+        header("Location: /admin/products");
     }
 }

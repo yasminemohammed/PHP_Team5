@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App;
 
-use App\Exceptions\RouteNotFoundException;
+use Pecee\SimpleRouter\SimpleRouter;
 
 class App
 {
     private static DB $db;
 
-    public function __construct(protected Router $router, protected array $request, protected Config $config)
+    public function __construct(protected Config $config)
     {
         static::$db = new DB($config->db ?? []);
     }
@@ -23,10 +23,9 @@ class App
     public function run()
     {
         try {
-            echo $this->router->resolve($this->request['uri'], strtolower($this->request['method']), $this->request['params']);
-        } catch (RouteNotFoundException) {
+            SimpleRouter::start();
+        } catch (\Exception $e) {
             http_response_code(404);
-
             echo View::make('error/404');
         }
     }

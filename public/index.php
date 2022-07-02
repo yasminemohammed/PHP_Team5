@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 use App\App;
 use App\Config;
+use App\Controllers\AdminCategoriesController;
+use App\Controllers\AdminProductsController;
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
 use App\Helpers\Utils;
@@ -25,14 +27,31 @@ $router = new Router();
 $router
     ->get('/', [HomeController::class, 'index'])
 
-    // user
-    ->get("/users/" . ($params['users'] ?? ""), [UserController::class, 'show'])
+    // users
+    ->get("/users/" . ($params[1] ?? ""), [UserController::class, 'show'])
     ->get('/users', [UserController::class, 'index'])
     ->post('/users', [UserController::class, 'store'])
-    ->delete("/users/" . ($params['users'] ?? ""), [UserController::class, 'delete'])
-    ->put("/users/" . ($params['users'] ?? ""), [UserController::class, 'update'])
-    ->get("/users/" . ($params['users'] ?? "") . "/edit", [UserController::class, 'edit'])
+    ->delete("/users/" . ($params[1] ?? ""), [UserController::class, 'delete'])
+    ->put("/users/" . ($params[1] ?? ""), [UserController::class, 'update'])
+    ->get("/users/" . ($params[1] ?? "") . "/edit", [UserController::class, 'edit'])
     ->get('/users/create', [UserController::class, 'create']);
+
+//products
+->
+get('/admin/products', [AdminProductsController::class, 'index'])
+    ->post('/admin/products', [AdminProductsController::class, 'store'])
+    ->get('/admin/products/create', [AdminProductsController::class, 'create'])
+    ->delete('/admin/products/1', [AdminProductsController::class, 'destroy'])
+
+
+    // categories
+    ->get('/admin/categories/create', [AdminCategoriesController::class, 'create'])
+    ->post('/admin/categories', [AdminCategoriesController::class, 'store']);
+
+dump($_SERVER['REQUEST_URI']);
+dump($params);
+dump($_SERVER['REQUEST_METHOD']);
+dd('here');
 
 (new App(
     $router,

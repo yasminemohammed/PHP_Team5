@@ -46,23 +46,23 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 align">
 
                         <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="#">Products</a>
+                        <a class="nav-link" href="Products.php">Products</a>
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="#">Users</a>
+                        <a class="nav-link" href="Users.php">Users</a>
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="#">Manual Orders</a>
+                        <a class="nav-link" href="Manual Orders.php">Manual Orders</a>
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="#">Checks</a>
+                        <a class="nav-link" href="Checks.php">Checks</a>
                         </li>
                      
                     </ul>

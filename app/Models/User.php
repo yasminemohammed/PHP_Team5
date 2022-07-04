@@ -16,6 +16,21 @@ class User extends Model
     private ?string $ext;
     private ?string $avatar;
     private ?int $roomNo;
+    private int $role;
+
+
+    public function __construct(array $attributes)
+    {
+        $this->id = $attributes['id'];
+        $this->firstName = $attributes['firstName'];
+        $this->lastName = $attributes['lastName'];
+        $this->username = $attributes['username'];
+        $this->email = $attributes['email'];
+        $this->ext = $attributes['ext'];
+        $this->avatar = $attributes['avatar'];
+        $this->roomNo = $attributes['roomNo'];
+        $this->role = $attributes['role'];
+    }
 
 
     public function getId(): int
@@ -106,10 +121,14 @@ class User extends Model
         $this->roomNo = $roomNo;
     }
 
+    public function isAdmin(): bool
+    {
+        return !!$this->role;
+    }
 
     public static function all(): array
     {
-        $query = "SELECT id, firstName, lastName, username,email, ext, avatar, roomNo FROM users WHERE role = 0;";
+        $query = "SELECT id, firstName, lastName, username,email, ext, avatar, roomNo, role FROM users WHERE role = 0;";
         $stmt = App::db()->prepare($query);
         $stmt->execute();
 
@@ -118,19 +137,19 @@ class User extends Model
 
     public static function getOneBy(string $attribute, $value): User|false
     {
-        $query = "SELECT id, firstName, lastName, username,email, ext, avatar, roomNo FROM users WHERE $attribute = :$attribute;";
+        $query = "SELECT id, firstName, lastName, username,email, ext, avatar, roomNo, role FROM users WHERE $attribute = :$attribute;";
         $stmt = App::db()->prepare($query);
         $stmt->bindValue(":$attribute", $value);
         $stmt->execute();
+        $user = $stmt->fetch();
 
-        return $stmt->fetchObject(User::class, []);
+        return new self($user);
     }
 
 
     public static function create(array $attributes): bool
     {
         $attributes['password'] = password_hash($attributes['password'], PASSWORD_BCRYPT);
-
         $query = "INSERT INTO `users` (firstName, lastName, email, username, `password`, avatar, ext, roomNo) VALUES(:firstName, :lastName, :email, :username, :password, :avatar, :ext, :roomNo)";
 
         $stmt = App::db()->prepare($query);
@@ -177,5 +196,21 @@ class User extends Model
         return $stmt->execute();
     }
 
+    public static function authenticate(string $username, string $password): bool|self
+    {
+        $query = "SELECT * FROM users WHERE username = :username LIMIT 1;";
+        $stmt = App::db()->prepare($query);
+        $stmt->bindValue(":username", $username);
+
+        $stmt->execute();
+        $user = $stmt->fetch();
+
+        dd($user);
+
+        if (!password_verify($password, $user['password']))
+            return false;
+
+        return new self($user);
+    }
 
 }

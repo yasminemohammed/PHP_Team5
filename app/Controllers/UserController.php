@@ -27,8 +27,10 @@ class UserController
         $attributes['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $attributes['firstName'] = $_POST['firstName'];
         $attributes['lastName'] = $_POST['lastName'];
+        $attributes['email'] = $_POST['email'];
         $attributes['ext'] = $_POST['ext'];
         $attributes['username'] = $_POST['username'];
+        $attributes['roomNo'] = (int)$_POST['roomNo'];
 
         $avatar = $_FILES['avatar'] ?? "default.png";
 
@@ -41,11 +43,15 @@ class UserController
 
         User::create($attributes);
 
-        header("Location: /users");
+        redirect('/users');
     }
 
     public function edit($id): View
     {
+
+        if (!auth() || $id != auth()?->getId())
+            redirect('/login');
+
         $user = User::getOneBy('id', $id);
 
         if (!$user)
@@ -56,6 +62,9 @@ class UserController
 
     public function update($id)
     {
+        if (!auth() || $id != auth()?->getId())
+            redirect('/login');
+
         $attributes = [];
         $attributes['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $attributes['firstName'] = $_POST['firstName'];

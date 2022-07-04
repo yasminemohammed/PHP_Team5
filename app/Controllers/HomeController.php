@@ -10,6 +10,9 @@ class HomeController
 {
     public function index(): View
     {
+        if (!auth())
+            redirect('/login');
+
         return View::make('index');
     }
 }

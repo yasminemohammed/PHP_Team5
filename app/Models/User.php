@@ -205,8 +205,6 @@ class User extends Model
         $stmt->execute();
         $user = $stmt->fetch();
 
-        dd($user);
-
         if (!password_verify($password, $user['password']))
             return false;
 

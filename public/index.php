@@ -6,6 +6,7 @@ use App\App;
 use App\Config;
 use App\Controllers\Admin\AdminCategoriesController;
 use App\Controllers\Admin\AdminProductsController;
+use App\Controllers\Admin\AdminUsersController;
 use App\Controllers\AuthController;
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
@@ -32,7 +33,6 @@ SimpleRouter::get('/', [HomeController::class, 'index']);
 SimpleRouter::get('/login', function () use ($session) {
     if (!!auth())
         redirect('/');
-
     return View::make('auth' . DIRECTORY_SEPARATOR . 'login');
 });
 SimpleRouter::post('/login', [AuthController::class, 'login']);
@@ -42,23 +42,22 @@ SimpleRouter::post('/logout', [AuthController::class, 'logout']);
 SimpleRouter::get("/users/{id}/edit", [UserController::class, 'edit']);
 SimpleRouter::put("/users/{id}", [UserController::class, 'update']);
 
-// admin
-SimpleRouter::get('admin/users', [UserController::class, 'index']);
-SimpleRouter::post('admin/users', [UserController::class, 'store']);
-SimpleRouter::delete("admin/users/{id}", [UserController::class, 'destroy']);
-SimpleRouter::get('/users/create', [UserController::class, 'create']);
+// admin.users
+SimpleRouter::get('admin/users', [AdminUsersController::class, 'index']);
+SimpleRouter::post('admin/users', [AdminUsersController::class, 'store']);
+SimpleRouter::get('admin/users/create', [AdminUsersController::class, 'create']);
+SimpleRouter::delete("admin/users/{id}", [AdminUsersController::class, 'destroy']);
 
-//products
+// admin.products
 SimpleRouter::get('/admin/products', [AdminProductsController::class, 'index']);
 SimpleRouter::post('/admin/products', [AdminProductsController::class, 'store']);
 SimpleRouter::get('/admin/products/create', [AdminProductsController::class, 'create']);
 SimpleRouter::delete('/admin/products/{id}', [AdminProductsController::class, 'destroy']);
 
-// categories
+// admin.categories
 SimpleRouter::get('/admin/categories/create', [AdminCategoriesController::class, 'create']);
 SimpleRouter::post('/admin/categories', [AdminCategoriesController::class, 'store']);
 
 SimpleRouter::setDefaultNamespace('\App\Controllers');
-
 
 (new App(new Config($_ENV)))->run();

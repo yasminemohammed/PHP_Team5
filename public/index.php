@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 use App\App;
 use App\Config;
-use App\Controllers\AdminCategoriesController;
-use App\Controllers\AdminProductsController;
+use App\Controllers\Admin\AdminCategoriesController;
+use App\Controllers\Admin\AdminProductsController;
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
 use Pecee\SimpleRouter\SimpleRouter;

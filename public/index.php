@@ -5,13 +5,11 @@ declare(strict_types=1);
 use App\App;
 use App\Config;
 use App\Controllers\Admin\AdminCategoriesController;
-use App\Controllers\Admin\AdminOrdersController;
 use App\Controllers\Admin\AdminProductsController;
 use App\Controllers\Admin\AdminUsersController;
 use App\Controllers\AuthController;
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
-use App\Controllers\UsersOrdersController;
 use App\Sessions\Session;
 use App\View;
 use Pecee\SimpleRouter\SimpleRouter;
@@ -28,6 +26,7 @@ const VIEW_PATH = __DIR__ . '/../views';
 $session = new Session();
 $session->start();
 
+
 SimpleRouter::get('/', [HomeController::class, 'index']);
 
 // auth
@@ -39,15 +38,9 @@ SimpleRouter::get('/login', function () use ($session) {
 SimpleRouter::post('/login', [AuthController::class, 'login']);
 SimpleRouter::post('/logout', [AuthController::class, 'logout']);
 
-// users
+// user
 SimpleRouter::get("/users/{id}/edit", [UserController::class, 'edit']);
 SimpleRouter::put("/users/{id}", [UserController::class, 'update']);
-
-// users.orders
-SimpleRouter::get('users/{id}/orders', [UsersOrdersController::class, 'index']);
-SimpleRouter::post('users/{id}/orders', [UsersOrdersController::class, 'store']);
-SimpleRouter::delete('users/{id}/orders/{oid}', [UsersOrdersController::class, 'destroy']);
-
 
 // admin.users
 SimpleRouter::get('admin/users', [AdminUsersController::class, 'index']);
@@ -59,18 +52,12 @@ SimpleRouter::delete("admin/users/{id}", [AdminUsersController::class, 'destroy'
 SimpleRouter::get('/admin/products', [AdminProductsController::class, 'index']);
 SimpleRouter::post('/admin/products', [AdminProductsController::class, 'store']);
 SimpleRouter::get('/admin/products/create', [AdminProductsController::class, 'create']);
-SimpleRouter::get('/admin/products/{id}/edit', [AdminProductsController::class, 'edit']);
-SimpleRouter::put('/admin/products/{id}', [AdminProductsController::class, 'destroy']);
 SimpleRouter::delete('/admin/products/{id}', [AdminProductsController::class, 'destroy']);
 
 // admin.categories
 SimpleRouter::get('/admin/categories/create', [AdminCategoriesController::class, 'create']);
 SimpleRouter::post('/admin/categories', [AdminCategoriesController::class, 'store']);
 
-// admin.orders
-SimpleRouter::get('/admin/orders', [AdminOrdersController::class, 'index']);
-SimpleRouter::get('/admin/orders/create', [AdminOrdersController::class, 'create']);
-SimpleRouter::post('/admin/orders', [AdminOrdersController::class, 'store']);
-
+SimpleRouter::setDefaultNamespace('\App\Controllers');
 
 (new App(new Config($_ENV)))->run();

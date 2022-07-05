@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controllers;
 
-use App\Models\Order;
 use App\View;
 
 class HomeController
@@ -14,10 +13,6 @@ class HomeController
         if (!auth())
             redirect('/login');
 
-        if (!auth()?->isAdmin())
-            return View::make('users' . DIRECTORY_SEPARATOR . 'home');
-
-
-        return View::make('admin' . DIRECTORY_SEPARATOR . 'home', ['orders' => Order::all()]);
+        return View::make('index');
     }
 }

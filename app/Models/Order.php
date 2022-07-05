@@ -4,7 +4,10 @@ declare(strict_types=1);
 namespace App\Models;
 
 use App\App;
+<<<<<<< HEAD
 use PDO;
+=======
+>>>>>>> [edit-files] write routes for user orders.
 
 class Order extends Model
 {
@@ -12,6 +15,7 @@ class Order extends Model
     private string $orderDate;
     private string $status;
     private int $amount;
+<<<<<<< HEAD
     private int $roomNo;
     private array $items;
 
@@ -55,6 +59,20 @@ FROM items AS i, products AS p WHERE order_id = :order_id AND i.product_id = p.i
 
         foreach ($items as $item)
             $this->addItem($item);
+=======
+
+    public static function create(array $attributes): bool
+    {
+        $query = "INSERT INTO `orders` (customer_id, amount, roomNo) VALUES(:customer_id, :amount, :roomNo)";
+
+        $stmt = App::db()->prepare($query);
+
+        foreach ($attributes as $key => $value) {
+            $stmt->bindValue("$key", $value);
+        }
+
+        return $stmt->execute();
+>>>>>>> [edit-files] write routes for user orders.
     }
 
     public function getId(): int
@@ -62,6 +80,7 @@ FROM items AS i, products AS p WHERE order_id = :order_id AND i.product_id = p.i
         return $this->id;
     }
 
+<<<<<<< HEAD
 
     public function getRoomNo(): int
     {
@@ -75,11 +94,14 @@ FROM items AS i, products AS p WHERE order_id = :order_id AND i.product_id = p.i
     }
 
 
+=======
+>>>>>>> [edit-files] write routes for user orders.
     public function getOrderDate(): string
     {
         return $this->orderDate;
     }
 
+<<<<<<< HEAD
 
     public function setOrderDate(string $orderDate): void
     {
@@ -87,6 +109,8 @@ FROM items AS i, products AS p WHERE order_id = :order_id AND i.product_id = p.i
     }
 
 
+=======
+>>>>>>> [edit-files] write routes for user orders.
     public function getStatus(): string
     {
         return $this->status;
@@ -107,6 +131,7 @@ FROM items AS i, products AS p WHERE order_id = :order_id AND i.product_id = p.i
         $this->amount = $amount;
     }
 
+<<<<<<< HEAD
 //    public function all(int $id = null): array {
 //
 //        $query = "SELECT o.id, order_date, roomNo, o.amount, os.order_status AS status
@@ -182,4 +207,6 @@ FROM items AS i, products AS p WHERE order_id = :order_id AND i.product_id = p.i
     }
 
 
+=======
+>>>>>>> [edit-files] write routes for user orders.
 }

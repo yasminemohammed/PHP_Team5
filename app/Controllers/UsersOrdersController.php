@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+<<<<<<< HEAD
 use App\Models\Order;
 use App\View;
 
@@ -41,4 +42,13 @@ class UsersOrdersController extends Controller
     }
 
 
+=======
+class UsersOrdersController extends Controller
+{
+    public function store($id)
+    {
+        dump('we are in store method for order');
+        dump($_POST);
+    }
+>>>>>>> [edit-files] write routes for user orders.
 }

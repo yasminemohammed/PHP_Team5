@@ -77,6 +77,7 @@
 
 <!-- products table  -->
 
+<<<<<<< HEAD
         <div class="container py-5 h-100 ">
             <div class="row d-flex justify-content-center align-items-center h-100 ">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5 width">
@@ -128,6 +129,61 @@
 
                                 <div class="form-outline mt-4">
                                     <label for="formGroupExampleInput" class="form-label font2">Product Picture</label>
+=======
+                <div class="container py-5 h-100 " >
+            <div class="row d-flex justify-content-center align-items-center h-100 ">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5 width">
+                <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+
+                    <h3 class="mb-5 font">Add Products</h3>
+                    <hr>
+                <form action="#" method="POST">
+
+                    <!-- Name -->
+
+                    <div class="form-outline mb-4">
+                        <label for="validationCustom01" class="form-label font2">Product_Name </label>
+                        <input type="text" class="form-control form-control-lg " id="validationCustom01" required>
+                        <div class="valid-feedback">
+                        Looks good!
+                        </div>
+                        <div class="invalid-feedback">Please fill out this field.</div>
+                        </div>
+
+
+                   
+
+                    <!-- price -->
+
+
+                    <form class="form-inline ">
+                    <div class="form-group">
+                        <label class="sr-only font2" for="exampleInputAmount">Price</label>
+                        <div class="input-group">
+                        <input type="number" min="0.00" step="0.05" value="1.00" id="exampleInputAmount" class="form-control" placeholder="Price">
+                        </div>
+                    </div>
+                    </form>
+                                    
+
+
+                    <!-- category -->
+
+                    <label for="formGroupExampleInput" class="form-label font2 mt-4">Category</label>
+                    <select class="form-select" aria-label="Default select example">
+                    <option selected></option>
+                    <option value="1">Hot drinks</option>
+                    <option value="2">Cold drinks</option>
+                    <option value="3"></option>
+                    </select>
+
+
+                <!-- product Picture -->
+
+                <div class="form-outline mt-4">
+                <label for="formGroupExampleInput" class="form-label font2">Product Picture</label>
+>>>>>>> users pages
                 <input class="form-control form-control-lg" id="formFileLg" type="file" />
             </div>
                 

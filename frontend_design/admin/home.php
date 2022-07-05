@@ -167,7 +167,7 @@
             </div>
                 
 
-                    <button class="btn btn-lg btn-block button_color" type="submit">Login</button>
+                    <button class="btn btn-lg btn-block button_color" type="submit">Add</button>
 
                 </form>
                 </div>

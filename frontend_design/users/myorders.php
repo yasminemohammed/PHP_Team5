@@ -63,20 +63,10 @@
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="Products.php">Products</a>
+                        <a class="nav-link" href="myorders.php">My Orders</a>
                         </li>
 
-                        <li class="nav-item">
-                        <a class="nav-link" href="Users.php">Users</a>
-                        </li>
-
-                        <li class="nav-item">
-                        <a class="nav-link" href="Manual Orders.php">Manual Orders</a>
-                        </li>
-
-                        <li class="nav-item">
-                        <a class="nav-link" href="Checks.php">Checks</a>
-                        </li>
+                     
                      
                     </ul>
                     </div>
@@ -96,25 +86,7 @@
                 </div>
                 </div>
 
-                <div class="row g-4 m-2">
-                    <div class="col-5 ">
-               
-                    <select class="form-select" aria-label="Default select example">
-                    <label for="users">Users</label>
-                    <option selected>Users</option>
-                    <option value="1">user1</option>
-                    <option value="2">user2</option>
-                    <option value="3">user3</option>
-                    </select>
-
-                 </div>
-                 <div class="col ">
-                 <button class="btn btn-lg btn-block button_color" type="submit">submit</button>
-
-                   </div>
-                </div>
-
-
+                
 
 
 
@@ -126,38 +98,11 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
-      <th scope="col">Name</th>
-      <th scope="col">Total Amount</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td ></td>
-      <td>
-      </td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-<table class="table g-4" style="width:70% ; margin-left:60px">
-  <thead>
-    <tr>
-      <th scope="col">ID</th>
       <th scope="col">Order Date</th>
-      <th scope="col"> Amount</th>
+      <th scope="col">Status</th>
+      <th scope="col">Amount</th>
+      <th scope="col">Action</th>
+
     </tr>
   </thead>
   <tbody>
@@ -165,20 +110,27 @@
       <th scope="row">1</th>
       <td></td>
       <td></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <th scope="row">2</th>
+      <td></td>
+      <td></td>
       <td></td>
       <td></td>
     </tr>
     <tr>
       <th scope="row">3</th>
       <td ></td>
-      <td>
-      </td>
+      <td></td>
+      <td></td>
+      <td></td>
     </tr>
   </tbody>
 </table>
+
+
 
 </body>
 

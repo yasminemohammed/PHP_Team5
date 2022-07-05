@@ -14,6 +14,7 @@
         }
         .button_color{
           background-color: #D9AFD9;
+          margin-left:200px;
 
         }
         .width{
@@ -118,6 +119,10 @@
     </tr>
   </tbody>
 </table>
+<form action="addproducts.php" method="POST">
+<button class="btn btn-lg btn-block button_color" type="submit">Add Productd</button>
+</form
+
 <br>
 <br>
 <br>

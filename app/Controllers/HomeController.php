@@ -13,6 +13,10 @@ class HomeController
         if (!auth())
             redirect('/login');
 
+        if (!auth()?->isAdmin())
+            return View::make('users' . DIRECTORY_SEPARATOR . 'home');
+
+
         return View::make('index');
     }
 }

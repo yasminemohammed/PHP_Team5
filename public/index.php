@@ -10,6 +10,7 @@ use App\Controllers\Admin\AdminUsersController;
 use App\Controllers\AuthController;
 use App\Controllers\HomeController;
 use App\Controllers\UserController;
+use App\Controllers\UsersOrdersController;
 use App\Sessions\Session;
 use App\View;
 use Pecee\SimpleRouter\SimpleRouter;
@@ -26,7 +27,6 @@ const VIEW_PATH = __DIR__ . '/../views';
 $session = new Session();
 $session->start();
 
-
 SimpleRouter::get('/', [HomeController::class, 'index']);
 
 // auth
@@ -38,9 +38,13 @@ SimpleRouter::get('/login', function () use ($session) {
 SimpleRouter::post('/login', [AuthController::class, 'login']);
 SimpleRouter::post('/logout', [AuthController::class, 'logout']);
 
-// user
+// users
 SimpleRouter::get("/users/{id}/edit", [UserController::class, 'edit']);
 SimpleRouter::put("/users/{id}", [UserController::class, 'update']);
+
+// users.orders
+SimpleRouter::get('users/{id}/orders', [UsersOrdersController::class, 'index']);
+SimpleRouter::post('users/{id}/orders', [UsersOrdersController::class, 'store']);
 
 // admin.users
 SimpleRouter::get('admin/users', [AdminUsersController::class, 'index']);
@@ -57,6 +61,7 @@ SimpleRouter::delete('/admin/products/{id}', [AdminProductsController::class, 'd
 // admin.categories
 SimpleRouter::get('/admin/categories/create', [AdminCategoriesController::class, 'create']);
 SimpleRouter::post('/admin/categories', [AdminCategoriesController::class, 'store']);
+
 
 SimpleRouter::setDefaultNamespace('\App\Controllers');
 

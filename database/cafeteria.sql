@@ -61,13 +61,13 @@ CREATE TABLE `items`
     `product_id`     int DEFAULT NULL,
     `amount`         decimal(10, 0) NOT NULL,
     `price_per_unit` decimal(10, 0) NOT NULL,
-    `quanity`        int            NOT NULL,
+    `quantity`       int            NOT NULL,
     PRIMARY KEY (`id`),
     KEY              `order_id` (`order_id`),
     KEY              `product_id` (`product_id`),
     CONSTRAINT `items_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
     CONSTRAINT `items_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -77,6 +77,13 @@ CREATE TABLE `items`
 LOCK
 TABLES `items` WRITE;
 /*!40000 ALTER TABLE `items` DISABLE KEYS */;
+INSERT INTO `items`
+VALUES (1, 1, 6, 20, 5, 4),
+       (2, 1, 5, 20, 10, 2),
+       (3, 2, 6, 20, 5, 4),
+       (4, 2, 5, 20, 10, 2),
+       (5, 3, 6, 20, 5, 4),
+       (6, 3, 5, 20, 10, 2);
 /*!40000 ALTER TABLE `items` ENABLE KEYS */;
 UNLOCK
 TABLES;
@@ -92,12 +99,11 @@ CREATE TABLE `order_status`
 (
     `id`           int NOT NULL AUTO_INCREMENT,
     `order_id`     int DEFAULT NULL,
-    `notes`        text,
     `order_status` enum('processing','out for delivery','done') DEFAULT NULL,
     PRIMARY KEY (`id`),
     KEY            `order_id` (`order_id`),
     CONSTRAINT `order_status_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,6 +113,10 @@ CREATE TABLE `order_status`
 LOCK
 TABLES `order_status` WRITE;
 /*!40000 ALTER TABLE `order_status` DISABLE KEYS */;
+INSERT INTO `order_status`
+VALUES (1, 1, 'processing'),
+       (2, 2, 'processing'),
+       (3, 3, 'processing');
 /*!40000 ALTER TABLE `order_status` ENABLE KEYS */;
 UNLOCK
 TABLES;
@@ -124,11 +134,12 @@ CREATE TABLE `orders`
     `customer_id` int DEFAULT NULL,
     `amount`      decimal(10, 0) NOT NULL,
     `roomNo`      int            NOT NULL,
+    `notes`       text,
     `order_date`  timestamp NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
     KEY           `customer_id` (`customer_id`),
     CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -138,6 +149,10 @@ CREATE TABLE `orders`
 LOCK
 TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders`
+VALUES (1, 1, 40, 12, 'tea is too much sugar', '2022-07-06 00:32:01'),
+       (2, 1, 40, 12, 'tea is too much sugar', '2022-07-06 01:06:08'),
+       (3, 1, 40, 12, 'tea is too much sugar', '2022-07-06 01:06:22');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK
 TABLES;
@@ -244,4 +259,4 @@ TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-07-05 16:49:35
+-- Dump completed on 2022-07-06 20:09:55

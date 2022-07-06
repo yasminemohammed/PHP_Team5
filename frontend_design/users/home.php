@@ -64,9 +64,8 @@
 
                 
                         <li class="nav-item">
-                        <a class="nav-link" href="#">My Orders</a>
+                        <a class="nav-link" href="myorders.php">My Orders</a>
                         </li>
-
                        
                     </ul>
                     </div>

@@ -44,6 +44,56 @@ class Order extends Model
             $this->addItem($item);
     }
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+
+    public function getRoomNo(): int
+    {
+        return $this->roomNo;
+    }
+
+
+    public function setRoomNo(int $roomNo): void
+    {
+        $this->roomNo = $roomNo;
+    }
+
+
+    public function getOrderDate(): string
+    {
+        return $this->orderDate;
+    }
+
+
+    public function setOrderDate(string $orderDate): void
+    {
+        $this->orderDate = $orderDate;
+    }
+
+
+    public function getStatus(): string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status): void
+    {
+        $this->status = $status;
+    }
+
+    public function getAmount(): int
+    {
+        return $this->amount;
+    }
+
+    public function setAmount(int $amount): void
+    {
+        $this->amount = $amount;
+    }
+
     public static function create(array $attributes): bool
     {
         try {
@@ -91,47 +141,14 @@ class Order extends Model
         return $executed;
     }
 
-    public function getId(): int
+    public static function deleteById(int $id): bool
     {
-        return $this->id;
+        $query = "DELETE FROM orders WHERE id = :id LIMIT 1;";
+        $stmt = App::db()->prepare($query);
+        $stmt->bindValue(":id", $id, PDO::PARAM_INT);
+
+        return $stmt->execute();
     }
 
-
-    public function getRoomNo(): int
-    {
-        return $this->roomNo;
-    }
-
-
-    public function setRoomNo(int $roomNo): void
-    {
-        $this->roomNo = $roomNo;
-    }
-
-
-    public function getOrderDate(): string
-    {
-        return $this->orderDate;
-    }
-
-    public function getStatus(): string
-    {
-        return $this->status;
-    }
-
-    public function setStatus(string $status): void
-    {
-        $this->status = $status;
-    }
-
-    public function getAmount(): int
-    {
-        return $this->amount;
-    }
-
-    public function setAmount(int $amount): void
-    {
-        $this->amount = $amount;
-    }
 
 }

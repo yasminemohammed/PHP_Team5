@@ -45,6 +45,8 @@ SimpleRouter::put("/users/{id}", [UserController::class, 'update']);
 // users.orders
 SimpleRouter::get('users/{id}/orders', [UsersOrdersController::class, 'index']);
 SimpleRouter::post('users/{id}/orders', [UsersOrdersController::class, 'store']);
+SimpleRouter::delete('users/{id}/orders/{oid}', [UsersOrdersController::class, 'destroy']);
+
 
 // admin.users
 SimpleRouter::get('admin/users', [AdminUsersController::class, 'index']);

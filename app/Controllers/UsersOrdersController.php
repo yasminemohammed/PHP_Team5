@@ -24,7 +24,6 @@ class UsersOrdersController extends Controller
         $isSuccess = Order::create($_POST + ['customer_id' => $userId]);
 
         if (!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') {
-
             if ($isSuccess)
                 response()->json(["message" => "success"]);
             else
@@ -32,6 +31,13 @@ class UsersOrdersController extends Controller
         }
 
         redirect('/');
+    }
+
+    public function destroy($userId, $orderId)
+    {
+        Order::deleteById($orderId);
+
+        redirect("/users/$userId/orders");
     }
 
 

@@ -37,13 +37,17 @@ background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);">
             <h3 class="mb-5 font">Sign in</h3>
             <hr>
         <form actio="#" method="POST">
-            <div class="form-outline mb-4">
-            <label for="validationDefaultUsername" class="form-label font2">Username</label>
-            <div class="input-group">
-              <span class="input-group-text" id="inputGroupPrepend2">@</span>
-              <input type="text" class="form-control form-control-lg" id="validationDefaultUsername"  aria-describedby="inputGroupPrepend2" required>
-            </div>         
-            </div>
+              <!-- email -->
+
+
+              <div class="form-outline mb-4">
+                    <label for="exampleDropdownFormEmail1" class="form-label font2">Email address</label>
+                    <input type="email" class="form-control form-control-lg" id="exampleDropdownFormEmail1" placeholder="email@example.com">
+                    <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div>
+                    </div>
+
+                <!-- password -->
 
             <div class="form-outline mb-4">
             <label class="form-label font2" for="typePasswordX-2">Password</label>

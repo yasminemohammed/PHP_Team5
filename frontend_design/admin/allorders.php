@@ -68,6 +68,7 @@
                         <li class="nav-item">
                         <a class="nav-link" href="allorders.php">All Orders</a>
                         </li>
+
                         <li class="nav-item">
                         <a class="nav-link" href="Checks.php">Checks</a>
                         </li>
@@ -80,17 +81,17 @@
 
 
 <!-- products table  -->
-<h2 style="margin-left:50px;">All Products</h2>
+<h2 style="margin-left:50px;">All Orders</h2>
         
 
 
 <table class="table" style="width:70%; margin-left:200px; margin-top:50px;" >
   <thead>
     <tr>
-      <th scope="col">#</th>
-      <th scope="col">Product</th>
-      <th scope="col">Price</th>
-      <th scope="col">Image</th>
+      <th scope="col">Order Date</th>
+      <th scope="col">Name</th>
+      <th scope="col">Room</th>
+      <th scope="col">EXT.</th>
       <th scope="col">Action</th>
 
     </tr>
@@ -122,9 +123,7 @@
     </tr>
   </tbody>
 </table>
-<form action="addproducts.php" method="POST">
-<button class="btn btn-lg btn-block button_color" type="submit">Add Productd</button>
-</form
+
 
 <br>
 <br>

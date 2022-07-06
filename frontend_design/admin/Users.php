@@ -1,5 +1,4 @@
-<!doctype html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,6 +64,9 @@
                         </li>
 
                         <li class="nav-item">
+                        <a class="nav-link" href="allorders.php">All Orders</a>
+                        </li>
+                        <li class="nav-item">
                         <a class="nav-link" href="Checks.php">Checks</a>
                         </li>
                      
@@ -124,24 +126,8 @@
     </tr>
   </tbody>
 </table>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+
 
 
 

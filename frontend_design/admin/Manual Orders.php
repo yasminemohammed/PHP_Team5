@@ -4,25 +4,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="../CSS/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../CSS/makeorder_style.css"/>
 
     <style>
+      .card-img-top{
+        padding:20px;
+      }
+      .mar{
+        margin:auto;
+      }
+       .align{
+            margin-left:740px;
+            
+        }
         .font{
             font-size:40px;
         }
         .font2{
             font-size:20px;
         }
-        .button_color{
-          background-color: #D9AFD9;
-
-        }
+      
        .a{
           text-decoration : none;
         }
-        .align{
-        margin-left:700px;
-        }
+      
       .img{
         width:50%;
       }
@@ -32,6 +37,9 @@
       }
       .mar{
         margin-top:18px;
+      }
+      .m{
+        margin-left:820px;
       }
     
     </style>
@@ -47,7 +55,7 @@
         background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);">
 
  <!-- Navbar -->
- <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
+ <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong mb-5">
                 <div class="container-fluid ">
                     <a class="navbar-brand" href="#">Cafetria</a>
                     <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" >
@@ -58,10 +66,11 @@
                     <div class="collapse navbar-collapse " id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 align">
 
-                    <li class="nav-item">
+                    <li class="nav-item ">
                         <a class="nav-link active" aria-current="page" href="home.php">Home</a>
                         </li>
 
+                
                         <li class="nav-item">
                         <a class="nav-link" href="Products.php">Products</a>
                         </li>
@@ -75,20 +84,65 @@
                         </li>
 
                         <li class="nav-item">
+                        <a class="nav-link" href="allorders.php">All Orders</a>
+                        </li>
+
+                        <li class="nav-item">
                         <a class="nav-link" href="Checks.php">Checks</a>
                         </li>
-                     
+                       
                     </ul>
                     </div>
                 
                 </div>
                 </nav>
+      <!-- adduser -->
+
+  <select class="form-select m" style="width:30%" aria-label="Default select example">
+  <option selected>User</option>
+  <option value="1">Ahmed</option>
+  <option value="2">yasmine</option>
+  <option value="3">sara</option>
+</select>
 
 
 
-          
+          <!-- menu -->
+
+      <h1 class="text-center text-light mt-5">Latest Orders</h1>
+    <div class="card-group text-center p-5 g-4 align-center mar bg-light" style="width:71%">
+  <div class="card m-3">
+    <img src="../images/tea.png" class="card-img-top" alt="Tea">
+    <div class="card-body">
+      <h5 class="card-title">Tea</h5>
+    </div>
+  </div>
+  <div class="card m-3">
+    <img src="../images/coffee.png" class="card-img-top" alt="coffe">
+    <div class="card-body">
+      <h5 class="card-title">Coffee</h5>
+    </div>
+  </div>
+  <div class="card m-3">
+    <img src="../images/drink.png" class="card-img-top" alt="drink">
+    <div class="card-body">
+      <h5 class="card-title">Drink</h5>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
 
           <!-- products -->
+          <h1 class="text-center text-light m-5">Make Your Order</h1>
 
           <div class="container">
 
@@ -98,8 +152,10 @@
       <a class="remove">
         <img src="../images/tea.png">
 
-        <h3>Remove product</h3>
+
       </a>
+      <h3>Remove product</h3>
+
     </header>
 
     <div class="content">
@@ -127,8 +183,9 @@
       <a class="remove">
                 <img src="../images/coffee.png">
 
-        <h3>Remove product</h3>
       </a>
+      <h3>Remove product</h3>
+
     </header>
 
     <div class="content">
@@ -158,13 +215,15 @@
       <a class="remove">
                 <img src="../images/drink.png">
 
-        <h3>Remove product</h3>
       </a>
+      <h3>Remove product</h3>
+
     </header>
 
     <div class="content">
 
       <h1>DRINK</h1>
+      
     </div>
 
     <footer class="content">
@@ -190,7 +249,31 @@
 <footer id="site-footer">
 <div class="container clearfix">
 
+  <div>
+  <div class="form-floating">
+  <textarea class="form-control" placeholder="Leave Your Notes here" id="floatingTextarea2" style="height: 100px"></textarea>
+  <label for="floatingTextarea2">Notes</label>
+</div>
+<br>
+<select class="form-select" aria-label="Default select example">
+  <option selected>ROOM No.</option>
   
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+  <option value="9">9</option>
+  <option value="10">10</option>
+  <option value="11">11</option>
+  <option value="12">12</option>
+</select>
+  </div>
+  <br>
+  <hr>
   <div class="right">
     <h1 class="total">Total: <span>0</span> EGP</h1>
     <a class="btn">Checkout</a>
@@ -200,7 +283,6 @@
 </footer>
 </main>
 
-  
 
 <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 <script>
@@ -236,8 +318,26 @@ $(".subtotal span").html(price);
 $(".total span").html(fullPrice);
 }
 
-$(document).ready(function(){
-
+  $(document).ready(function(){
+  
+  $(".remove").click(function(){
+    var el = $(this);
+    el.parent().parent().addClass("removed");
+    window.setTimeout(
+      function(){
+        el.parent().parent().slideUp('fast', function() { 
+          el.parent().parent().remove(); 
+          if($(".product").length == 0) {
+            if(check) {
+              $("#cart").html("<h1>The shop does not function, yet!</h1><p>If you liked my shopping cart, please take a second and heart this Pen on <a href='https://codepen.io/ziga-miklic/pen/xhpob'>CodePen</a>. Thank you!</p>");
+            } else {
+              $("#cart").html("<h1>No products!</h1>");
+            }
+          }
+          changeTotal(); 
+        });
+      }, 200);
+  });
 
 $(".qt-plus").click(function(){
 $(this).parent().children(".qt").html(parseInt($(this).parent().children(".qt").html()) + 1);
@@ -263,16 +363,13 @@ window.setTimeout(function(){el.parent().children(".full-price").removeClass("mi
 });
 
 window.setTimeout(function(){$(".is-open").removeClass("is-open")}, 1200);
-
 $(".btn").click(function(){
-check = true;
-$(".remove").click();
-});
+    check = true;
+    $(".remove").click();
+  });
+
 });
 </script> 
-
-
-          
 
 
 </body>

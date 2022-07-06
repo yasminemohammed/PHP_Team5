@@ -65,6 +65,10 @@
                         </li>
 
                         <li class="nav-item">
+                        <a class="nav-link" href="allorders.php">All Orders</a>
+                        </li>
+
+                        <li class="nav-item">
                         <a class="nav-link" href="Checks.php">Checks</a>
                         </li>
                      

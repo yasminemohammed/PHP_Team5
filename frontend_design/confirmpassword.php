@@ -35,7 +35,7 @@ background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);">
             <hr>
         <form action="#" method="POST">
         <div class="form-outline mb-4">
-            <label class="form-label font2" for="typePasswordX-2">Password</label>
+            <label class="form-label font2" for="typePasswordX-2">New Password</label>
             <input type="password" id="typePasswordX-2" class="form-control form-control-lg" />
             </div>
 

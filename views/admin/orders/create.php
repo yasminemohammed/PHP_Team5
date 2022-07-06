@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!--<!doctype html>-->
 <!--<html lang="en">-->
 <!--<head>-->
@@ -489,6 +490,58 @@
         });
     });
 
+=======
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body>
+
+<form id="cart-form" action="http://<?php echo $_SERVER['HTTP_HOST'] . "admin/orders/" ?>" method="post">
+
+    <label for="users">users</label>
+    <select id="users" name="customer_id">
+        <?php foreach ($users as $user): ?>
+            <option value="<?php echo $user?->getId(); ?>"> <?php echo $user?->getFirstName() . " " . $user?->getLastName(); ?></option>
+        <?php endforeach; ?>
+    </select>
+    <br> <br>
+    <label for="tea">tea: </label>
+    <input type="number" id="tea" name="tea">
+
+    <br><br>
+
+    <label for="tea">coffee: </label>
+    <input type="number" id="coffee" name="coffee">
+
+    <br><br>
+
+    <label for="tea">Enab: </label>
+    <input type="number" id="enab" name="enab">
+
+    <br><br>
+
+    <label for="notes">Notes: </label>
+    <textarea name="notes" id="notes">tea is too much sugar</textarea>
+
+    <br><br>
+
+    <label for="roomNo">Room No: </label>
+    <input type="number" id="roomNo" name="roomNo">
+    <br><br>
+
+    <button type="submit">submit</button>
+</form>
+
+
+<script>
+>>>>>>> [add-feature] Admin can create a manual order for a specific user.
     $('#cart-form').submit(function (event) {
         event.preventDefault();
 
@@ -506,6 +559,9 @@
         $.post("/admin/orders", data);
     });
 </script>
+<<<<<<< HEAD
 
+=======
+>>>>>>> [add-feature] Admin can create a manual order for a specific user.
 </body>
 </html>

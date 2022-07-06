@@ -152,7 +152,14 @@ WHERE customer_id = :customer_id AND o.id = os.order_id;";
         $stmt = App::db()->prepare($query);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $usersArrObjects = [];
+        foreach ($users as $user) {
+            $usersArrObjects[] = new User($user);
+        }
+
+        return $usersArrObjects;
     }
 
     public static function getOneBy(string $attribute, $value): User|false

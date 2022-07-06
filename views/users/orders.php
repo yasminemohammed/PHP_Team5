@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 <html>
 <head>
     <!-- Extra JavaScript/CSS added manually in "Settings" tab -->
@@ -154,6 +155,8 @@
 
 </section>
 =======
+=======
+>>>>>>> [edit-feature] authorized user can make and read his orders.
 <!doctype html>
 <html lang="en">
 <head>
@@ -169,6 +172,9 @@
 
 <?php dd($orders) ?>
 
+<<<<<<< HEAD
 >>>>>>> [add-feature] authorized user can make and read his orders.
+=======
+>>>>>>> [edit-feature] authorized user can make and read his orders.
 </body>
 </html>

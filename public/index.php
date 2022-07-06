@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\App;
 use App\Config;
 use App\Controllers\Admin\AdminCategoriesController;
+use App\Controllers\Admin\AdminOrdersController;
 use App\Controllers\Admin\AdminProductsController;
 use App\Controllers\Admin\AdminUsersController;
 use App\Controllers\AuthController;
@@ -62,7 +63,8 @@ SimpleRouter::delete('/admin/products/{id}', [AdminProductsController::class, 'd
 SimpleRouter::get('/admin/categories/create', [AdminCategoriesController::class, 'create']);
 SimpleRouter::post('/admin/categories', [AdminCategoriesController::class, 'store']);
 
-
-SimpleRouter::setDefaultNamespace('\App\Controllers');
+// admin.orders
+SimpleRouter::get('/admin/orders/create', [AdminOrdersController::class, 'create']);
+SimpleRouter::post('/admin/orders', [AdminOrdersController::class, 'store']);
 
 (new App(new Config($_ENV)))->run();

@@ -9,9 +9,21 @@ class Item extends Model
     private string $name;
     private int $quantity;
     private int $amount;
+<<<<<<< HEAD
     private int $price;
 
 
+=======
+
+
+//    public function __construct(array $attributes)
+//    {
+//        $this->name = $attributes['name'];
+//        $this->quantity = $attributes['quantity'];
+//        $this->price = $attributes['price'];
+//    }
+
+>>>>>>> [add-feature] authorized user can make and read his orders.
     public function getId(): int
     {
         return $this->id;
@@ -22,11 +34,14 @@ class Item extends Model
         $this->id = $id;
     }
 
+<<<<<<< HEAD
     public function getPrice(): int
     {
         return $this->price;
     }
 
+=======
+>>>>>>> [add-feature] authorized user can make and read his orders.
     public function getName(): string
     {
         return $this->name;
@@ -38,7 +53,11 @@ class Item extends Model
         $this->name = $name;
     }
 
+<<<<<<< HEAD
     public function getQuantity(): int
+=======
+    public function getQuantity(): mixed
+>>>>>>> [add-feature] authorized user can make and read his orders.
     {
         return $this->quantity;
     }

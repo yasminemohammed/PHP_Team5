@@ -126,6 +126,26 @@ class User extends Model
         return !!$this->role;
     }
 
+
+    public function orders(): array
+    {
+
+        $query = "SELECT o.id, order_date, roomNo, o.amount, os.order_status AS status
+FROM orders AS o, order_status AS os 
+WHERE customer_id = :customer_id AND o.id = os.order_id;";
+
+        $stmt = App::db()->prepare($query);
+        $stmt->bindValue(":customer_id", $this->id);
+        $stmt->execute();
+        $orders = $stmt->fetchAll(PDO::FETCH_CLASS, Order::class);
+
+        foreach ($orders as $order) {
+            $order->addItems();
+        }
+
+        return $orders;
+    }
+
     public static function all(): array
     {
         $query = "SELECT id, firstName, lastName, username,email, ext, avatar, roomNo, role FROM users WHERE role = 0;";

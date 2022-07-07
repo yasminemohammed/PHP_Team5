@@ -17,7 +17,6 @@
 
         .button_color {
             background-color: #D9AFD9;
-            margin-left: 200px;
 
         }
 
@@ -90,49 +89,41 @@
 
 
     <!-- products table  -->
-    <h2 style="margin-left:50px;">All Products</h2>
-
+    <h2 style="margin-left:50px;">All Users</h2>
 
     <table class="table" style="width:70%; margin-left:200px; margin-top:50px;">
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Product</th>
-            <th scope="col">Price</th>
+            <th scope="col">Name</th>
+            <th scope="col">Room</th>
             <th scope="col">Image</th>
+            <th scope="col">EXT.</th>
             <th scope="col">Action</th>
 
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($products as $product): ?>
+        <?php foreach ($users as $user): ?>
             <tr>
-                <th scope="row"><?php echo $product?->getId() ?></th>
-                <td><?php echo $product?->getName(); ?></td>
-                <td><?php echo $product?->getPrice() ?></td>
-                <td><img src="<?php echo $product?->getFeatureImage() ?>"></td>
-                <td class="d-flex flex-row justify-content-evenly">
-                    <span><?php echo $product?->isAvailable() ? "Available" : "Unavailable" ?></span>
-                    <form action="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/products/" . $product?->getId(); ?>"
+                <th scope="row"><?php echo $user?->getId() ?></th>
+                <td><?php echo $user?->getFirstName() . " " . $user?->getLastName() ?></td>
+                <td><?php echo $user?->getRoomNo() ?></td>
+                <td><img src="<?php echo $user?->getAvatar() ?>"></td>
+                <td><?php echo $user?->getExt() ?></td>
+                <td>
+
+                    <form action="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/users/" . $user?->getId(); ?>"
                           method="post">
                         <input type="hidden" name="_method" value="DELETE"/>
                         <a href="#" id="delete"
                            onclick="event.preventDefault(); event.target.closest('form').submit()">Delete</a>
                     </form>
-                    <div>
-                        <a href="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/products/" . $product?->getId() . "/edit"; ?>"
-                           id="edit"">Edit</a></div>
                 </td>
             </tr>
         <?php endforeach; ?>
-
-
         </tbody>
     </table>
-
-    <a class="btn btn-lg btn-block button_color"
-       href="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/products/create"; ?>">Add Product</a>
-
 
 </section>
 

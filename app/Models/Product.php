@@ -38,7 +38,7 @@ class Product extends Model
 
     public function getFeatureImage(): string
     {
-        return $this->featureImage;
+        return $this->featureImage ?? "default.png";
     }
 
     public function setFeatureImage(string $featureImage): void

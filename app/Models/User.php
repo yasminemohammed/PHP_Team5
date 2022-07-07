@@ -16,6 +16,21 @@ class User extends Model
     private ?string $ext;
     private ?string $avatar;
     private ?int $roomNo;
+    private int $role;
+
+
+    public function __construct(array $attributes)
+    {
+        $this->id = $attributes['id'];
+        $this->firstName = $attributes['firstName'];
+        $this->lastName = $attributes['lastName'];
+        $this->username = $attributes['username'];
+        $this->email = $attributes['email'];
+        $this->ext = $attributes['ext'];
+        $this->avatar = $attributes['avatar'];
+        $this->roomNo = $attributes['roomNo'];
+        $this->role = $attributes['role'];
+    }
 
 
     public function getId(): int
@@ -76,7 +91,7 @@ class User extends Model
 
     public function getExt(): ?string
     {
-        return $this->ext ?? "";
+        return $this->ext ?? "3456";
     }
 
     public function setExt(string $ext): void
@@ -86,7 +101,7 @@ class User extends Model
 
     public function getAvatar(): ?string
     {
-        return $this->avatar ?? "";
+        return $this->avatar ?? "default.png";
     }
 
     public function setAvatar(string $avatar): void
@@ -106,31 +121,81 @@ class User extends Model
         $this->roomNo = $roomNo;
     }
 
+    public function isAdmin(): bool
+    {
+        return !!$this->role;
+    }
+
+
+    public function orders(bool $checked = false, string $startDate = null, string $endDate = null): array
+    {
+
+        $query = "SELECT o.id, order_date, roomNo, o.amount, os.order_status AS status
+FROM orders AS o, order_status AS os 
+WHERE customer_id = :customer_id AND o.id = os.order_id";
+
+        if ($checked)
+            $query .= " AND os.order_status = 'done'";
+
+        if (isset($startDate)) {
+            $query .= " AND Date(order_date) >= :order_date";
+        }
+
+        if (isset($endDate)) {
+            $query .= " AND Date(order_date) <= :order_date2";
+        }
+        $query .= ";";
+
+        $stmt = App::db()->prepare($query);
+        $stmt->bindValue(":customer_id", $this->id);
+
+        if (isset($startDate))
+            $stmt->bindValue(":order_date", $startDate);
+        if (isset($endDate))
+            $stmt->bindValue(":order_date2", $endDate);
+
+
+        $stmt->execute();
+        $orders = $stmt->fetchAll(PDO::FETCH_CLASS, Order::class);
+
+        foreach ($orders as $order) {
+            $order->addItems();
+        }
+
+        return $orders;
+    }
 
     public static function all(): array
     {
-        $query = "SELECT id, firstName, lastName, username,email, ext, avatar, roomNo FROM users WHERE role = 0;";
+        $query = "SELECT id, firstName, lastName, username,email, ext, avatar, roomNo, role FROM users WHERE role = 0;";
         $stmt = App::db()->prepare($query);
         $stmt->execute();
 
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        $usersArrObjects = [];
+        foreach ($users as $user) {
+            $usersArrObjects[] = new User($user);
+        }
+
+        return $usersArrObjects;
     }
 
     public static function getOneBy(string $attribute, $value): User|false
     {
-        $query = "SELECT id, firstName, lastName, username,email, ext, avatar, roomNo FROM users WHERE $attribute = :$attribute;";
+        $query = "SELECT id, firstName, lastName, username,email, ext, avatar, roomNo, role FROM users WHERE $attribute = :$attribute;";
         $stmt = App::db()->prepare($query);
         $stmt->bindValue(":$attribute", $value);
         $stmt->execute();
+        $user = $stmt->fetch();
 
-        return $stmt->fetchObject(User::class, []);
+        return new self($user);
     }
 
 
     public static function create(array $attributes): bool
     {
         $attributes['password'] = password_hash($attributes['password'], PASSWORD_BCRYPT);
-
         $query = "INSERT INTO `users` (firstName, lastName, email, username, `password`, avatar, ext, roomNo) VALUES(:firstName, :lastName, :email, :username, :password, :avatar, :ext, :roomNo)";
 
         $stmt = App::db()->prepare($query);
@@ -177,5 +242,19 @@ class User extends Model
         return $stmt->execute();
     }
 
+    public static function authenticate(string $username, string $password): bool|self
+    {
+        $query = "SELECT * FROM users WHERE username = :username LIMIT 1;";
+        $stmt = App::db()->prepare($query);
+        $stmt->bindValue(":username", $username);
+
+        $stmt->execute();
+        $user = $stmt->fetch();
+
+        if (!password_verify($password, $user['password']))
+            return false;
+
+        return new self($user);
+    }
 
 }

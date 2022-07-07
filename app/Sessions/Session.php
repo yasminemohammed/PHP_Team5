@@ -57,12 +57,6 @@ class Session implements SessionInterface
         session_unset();
     }
 
-    public function regenerate(): void
-    {
-        session_regenerate_id(true);
-    }
-
-
     public function remove(string $key): void
     {
         if ($this->has($key))

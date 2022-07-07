@@ -10,34 +10,16 @@ class AdminProductsController
 {
     public function index(): View
     {
-        if (!auth())
-            redirect('/login');
-
-        if (!auth()?->isAdmin())
-            redirect('/');
-
         return View::make('admin' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . 'index', ['products' => Product::all()]);
     }
 
     public function create(): View
     {
-        if (!auth())
-            redirect('/login');
-
-        if (!auth()?->isAdmin())
-            redirect('/');
-
         return View::make('admin' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . 'create', ['categories' => Category::all()]);
     }
 
     public function store()
     {
-        if (!auth())
-            redirect('/login');
-
-        if (!auth()?->isAdmin())
-            redirect('/');
-
         $attributes = [];
         $attributes['name'] = $_POST['name'];
         $attributes['category_id'] = (int)$_POST['category_id'];
@@ -58,12 +40,6 @@ class AdminProductsController
 
     public function destroy($id)
     {
-        if (!auth())
-            redirect('/login');
-
-        if (!auth()?->isAdmin())
-            redirect('/');
-
         Product::deleteById($id);
 
         header("Location: /admin/products");

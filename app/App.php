@@ -22,12 +22,11 @@ class App
 
     public function run()
     {
-//        try {
-//            SimpleRouter::start();
-//        } catch (\Exception $e) {
-//            http_response_code(404);
-//            echo View::make('error/404');
-//        }
-        SimpleRouter::start();
+        try {
+            SimpleRouter::start();
+        } catch (\Exception $e) {
+            http_response_code(404);
+            echo View::make('error/404');
+        }
     }
 }

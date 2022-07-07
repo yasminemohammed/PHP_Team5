@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action="http://<?php echo $_SERVER['HTTP_HOST'] ?>/admin/users" method="post" enctype="multipart/form-data">
+<form action="http://<?php echo $_SERVER['HTTP_HOST'] ?>/users" method="post" enctype="multipart/form-data">
 
     <label for="firstName">first name: </label>
     <input type="text" id="firstName" name="firstName">

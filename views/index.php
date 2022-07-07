@@ -9,9 +9,5 @@
 </head>
 <body>
 Home Page
-
-<form action="http://<?php echo $_SERVER['HTTP_HOST'] . "/logout" ?>" method="post">
-    <a href="#" onclick="event.preventDefault(); event.target.closest('form').submit()">logout</a>
-</form>
 </body>
 </html>

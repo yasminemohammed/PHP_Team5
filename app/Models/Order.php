@@ -21,6 +21,18 @@ class Order extends Model
         $this->items = [];
     }
 
+    public static function all(): array|bool
+    {
+        $query = "SELECT o.id, order_date, roomNo, o.amount, os.order_status AS status
+FROM orders AS o, order_status AS os 
+WHERE o.id = os.order_id;";
+
+        $stmt = App::db()->prepare($query);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_CLASS, Order::class);
+    }
+
     private function addItem(Item $item): void
     {
         $this->items[] = $item;

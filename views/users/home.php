@@ -56,7 +56,8 @@
             "amount": 40
         };
 
-        $.post("users/1/orders", data);
+        let action = $('cart-form').action;
+        $.post(action, data);
     });
 </script>
 </body>

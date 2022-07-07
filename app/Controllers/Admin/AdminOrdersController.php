@@ -3,6 +3,7 @@
 namespace App\Controllers\Admin;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\User;
 use App\View;
 
@@ -56,7 +57,11 @@ class AdminOrdersController
         if (!auth()?->isAdmin())
             redirect('/');
 
-        return View::make('admin' . DIRECTORY_SEPARATOR . 'orders' . DIRECTORY_SEPARATOR . 'create', ['users' => User::all()]);
+
+        return View::make('admin' . DIRECTORY_SEPARATOR . 'orders' . DIRECTORY_SEPARATOR . 'create', [
+            'users' => User::all(),
+            'products' => Product::all()
+        ]);
     }
 
     public function store()

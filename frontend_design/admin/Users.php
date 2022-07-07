@@ -34,7 +34,6 @@
     <section  style="height:100% ; background-color: #D9AFD9;
         background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);">
 
-      
 
       <!-- Navbar -->
                 <nav class="navbar navbar-expand-lg navbar-dark shadow-5-strong">
@@ -84,53 +83,36 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Name</th>
-      <th scope="col">Room</th>
-      <th scope="col">Image</th>
-      <th scope="col">EXT.</th>
-      <th scope="col">Action</th>
+        <th scope="col">Name</th>
+        <th scope="col">Room</th>
+        <th scope="col">Image</th>
+        <th scope="col">EXT.</th>
+        <th scope="col">Action</th>
 
     </tr>
   </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+    <tbody>
 
+    <?php foreach ($users as $user): ?>
+        <tr>
+            <th scope="row"><?php echo $user?->getId() ?></th>
+            <td><?php echo $user?->getFirstName() . " " . $user?->getLastName() ?></td>
+            <td><?php echo $user?->getRoom() ?></td>
+            <td><img src="<?php echo $user->getImage() ?? "default.png" ?>"></td>
+            <td><?php echo $user?->getExt() ?></td>
+            <td>****</td>
+        </tr>
+    <?php endforeach; ?>
 
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-
-
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-
-    </tr>
-  </tbody>
+    </tbody>
 </table>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
 <br>
 <br>
 <br>

@@ -43,7 +43,11 @@ class AdminProductsController
         $attributes['category_id'] = (int)$_POST['category_id'];
         $attributes['price'] = (int)$_POST['price'];
 
-        $productImage = $_FILES['featureImage'] ?? "default.png";
+
+        if (isset($_FILES['featureImage']))
+            $productImage = $_FILES['featureImage'];
+        else
+            $productImage['name'] = 'default.png';
 
         $filePath = STORAGE_PATH . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . 'products' . DIRECTORY_SEPARATOR . $productImage['name'];
 
@@ -54,6 +58,16 @@ class AdminProductsController
         Product::create($attributes);
 
         header("Location: /admin/products");
+    }
+
+    public function edit($id)
+    {
+        dd('we are edit page to edit product todo');
+    }
+
+    public function update($id)
+    {
+        dd('we are update method to update product todo');
     }
 
     public function destroy($id)

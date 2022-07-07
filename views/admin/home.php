@@ -89,58 +89,64 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="myorders.php">My Orders</a>
+                        <a class="nav-link" href="Products.php">Products</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="Users.php">Users</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="Manual Orders.php">Manual Orders</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="Checks.php">Checks</a>
+                    </li>
 
                 </ul>
             </div>
 
         </div>
     </nav>
-
-    <!-- checks -->
-    <div class="row g-4 m-2">
-        <div class="col-5 ">
-            <label for="startDate">Date From</label>
-            <input id="startDate" class="form-control" type="date"/>
-        </div>
-        <div class="col-5">
-            <label for="EndDate">Date To</label>
-            <input id="EndDate" class="form-control" type="date"/>
-        </div>
-    </div>
+    <h2 style="margin-left:50px;">orders</h2>
 
     <!-- tables -->
-
-
     <table class="table g-4" style="width:70% ; margin-left:60px">
         <thead>
         <tr>
-            <th scope="col">ID</th>
             <th scope="col">Order Date</th>
-            <th scope="col">Status</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Action</th>
-
+            <th scope="col"> Amount</th>
         </tr>
         </thead>
         <tbody>
-
         <?php foreach ($orders as $order): ?>
             <tr>
-                <th scope="row"><?php echo $order?->getId() ?></th>
-                <td><?php echo $order?->order_date ?></td>
-                <td><?php echo $order?->getStatus() ?></td>
-                <td><?php echo $order?->getAmount() ?></td>
-                <td>
-                    <form action="http://<?php echo $_SERVER['HTTP_HOST'] . "/users/" . auth()?->getId() . "/orders/" . $order?->getId() ?>"
-                          method="post">
-                        <input type="hidden" name="_method" value="DELETE"/>
-                        <a href="#" id="cancel"
-                           onclick="event.preventDefault(); event.target.closest('form').submit()">Cancel</a>
-                    </form>
-                </td>
+                <td><?php echo $order?->order_date; ?></td>
+                <td><?php echo $order?->getAmount(); ?></td>
+            </tr>
+            <tr>
+                <table class="table g-4" style="width:70% ; margin-left:60px">
+                    <tbody>
+                    <tr>
+                        <div class="d-flex flex-row bd-highlight mb-3 ml justify-content-center">
+                            <?php foreach ($order?->getItems() as $item): ?>
+                                <div class="p-4 border border-3 m-5">
+                                    <div>
+                                        <?php echo $item?->getName() ?>
+                                    </div>
+                                    <div>
+                                        <?php echo "quantity: " . $item?->getQuantity() ?>
+                                    </div>
+                                    <div>
+                                        <?php echo "price: " . $item?->getPrice() ?>
+                                    </div>
+                                </div>
+                            <?php endforeach; ?>
+                        </div>
+                    </tr>
+                    </tbody>
+                </table>
             </tr>
         <?php endforeach; ?>
         </tbody>
@@ -148,9 +154,7 @@
 
 
 </body>
-
 </html>
-
 </section>
 </body>
 </html>

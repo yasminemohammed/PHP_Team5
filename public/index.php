@@ -59,6 +59,8 @@ SimpleRouter::delete("admin/users/{id}", [AdminUsersController::class, 'destroy'
 SimpleRouter::get('/admin/products', [AdminProductsController::class, 'index']);
 SimpleRouter::post('/admin/products', [AdminProductsController::class, 'store']);
 SimpleRouter::get('/admin/products/create', [AdminProductsController::class, 'create']);
+SimpleRouter::get('/admin/products/{id}/edit', [AdminProductsController::class, 'edit']);
+SimpleRouter::put('/admin/products/{id}', [AdminProductsController::class, 'destroy']);
 SimpleRouter::delete('/admin/products/{id}', [AdminProductsController::class, 'destroy']);
 
 // admin.categories
@@ -66,7 +68,9 @@ SimpleRouter::get('/admin/categories/create', [AdminCategoriesController::class,
 SimpleRouter::post('/admin/categories', [AdminCategoriesController::class, 'store']);
 
 // admin.orders
+SimpleRouter::get('/admin/orders', [AdminOrdersController::class, 'index']);
 SimpleRouter::get('/admin/orders/create', [AdminOrdersController::class, 'create']);
 SimpleRouter::post('/admin/orders', [AdminOrdersController::class, 'store']);
+
 
 (new App(new Config($_ENV)))->run();

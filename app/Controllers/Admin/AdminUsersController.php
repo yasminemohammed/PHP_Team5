@@ -74,7 +74,7 @@ class AdminUsersController extends Controller
 
         User::deleteById($id);
 
-        redirect('/users');
+        redirect('/admin/users');
     }
 
 }

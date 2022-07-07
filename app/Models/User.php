@@ -91,7 +91,7 @@ class User extends Model
 
     public function getExt(): ?string
     {
-        return $this->ext ?? "";
+        return $this->ext ?? "3456";
     }
 
     public function setExt(string $ext): void
@@ -101,7 +101,7 @@ class User extends Model
 
     public function getAvatar(): ?string
     {
-        return $this->avatar ?? "";
+        return $this->avatar ?? "default.png";
     }
 
     public function setAvatar(string $avatar): void
@@ -127,15 +127,34 @@ class User extends Model
     }
 
 
-    public function orders(): array
+    public function orders(bool $checked = false, string $startDate = null, string $endDate = null): array
     {
 
         $query = "SELECT o.id, order_date, roomNo, o.amount, os.order_status AS status
 FROM orders AS o, order_status AS os 
-WHERE customer_id = :customer_id AND o.id = os.order_id;";
+WHERE customer_id = :customer_id AND o.id = os.order_id";
+
+        if ($checked)
+            $query .= " AND os.order_status = 'done'";
+
+        if (isset($startDate)) {
+            $query .= " AND Date(order_date) >= :order_date";
+        }
+
+        if (isset($endDate)) {
+            $query .= " AND Date(order_date) <= :order_date2";
+        }
+        $query .= ";";
 
         $stmt = App::db()->prepare($query);
         $stmt->bindValue(":customer_id", $this->id);
+
+        if (isset($startDate))
+            $stmt->bindValue(":order_date", $startDate);
+        if (isset($endDate))
+            $stmt->bindValue(":order_date2", $endDate);
+
+
         $stmt->execute();
         $orders = $stmt->fetchAll(PDO::FETCH_CLASS, Order::class);
 

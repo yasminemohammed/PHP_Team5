@@ -9,14 +9,8 @@ class Item extends Model
     private string $name;
     private int $quantity;
     private int $amount;
+    private int $price;
 
-
-//    public function __construct(array $attributes)
-//    {
-//        $this->name = $attributes['name'];
-//        $this->quantity = $attributes['quantity'];
-//        $this->price = $attributes['price'];
-//    }
 
     public function getId(): int
     {
@@ -26,6 +20,11 @@ class Item extends Model
     public function setId(int $id): void
     {
         $this->id = $id;
+    }
+
+    public function getPrice(): int
+    {
+        return $this->price;
     }
 
     public function getName(): string
@@ -39,7 +38,7 @@ class Item extends Model
         $this->name = $name;
     }
 
-    public function getQuantity(): mixed
+    public function getQuantity(): int
     {
         return $this->quantity;
     }

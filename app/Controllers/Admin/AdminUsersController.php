@@ -17,7 +17,6 @@ class AdminUsersController extends Controller
         if (!auth()?->isAdmin())
             redirect('/');
 
-        dump('we are in index method users');
         $users = User::all();
 
         return View::make('admin' . DIRECTORY_SEPARATOR . 'users' . DIRECTORY_SEPARATOR . 'index', ['users' => $users]);

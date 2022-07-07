@@ -1,5 +1,4 @@
 <!doctype html>
-<!doctype html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -15,7 +14,6 @@
         }
         .button_color{
           background-color: #D9AFD9;
-          margin-left:200px;
 
         }
         .width{
@@ -67,9 +65,6 @@
                         </li>
 
                         <li class="nav-item">
-                        <a class="nav-link" href="allorders.php">All Orders</a>
-                        </li>
-                        <li class="nav-item">
                         <a class="nav-link" href="Checks.php">Checks</a>
                         </li>
                      
@@ -81,7 +76,7 @@
 
 
 <!-- products table  -->
-<h2 style="margin-left:50px;">All Products</h2>
+<h2 style="margin-left:50px;">All Users</h2>
         
 
 
@@ -89,9 +84,10 @@
   <thead>
     <tr>
       <th scope="col">#</th>
-      <th scope="col">Product</th>
-      <th scope="col">Price</th>
+      <th scope="col">Name</th>
+      <th scope="col">Room</th>
       <th scope="col">Image</th>
+      <th scope="col">EXT.</th>
       <th scope="col">Action</th>
 
     </tr>
@@ -103,6 +99,8 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
+
 
     </tr>
     <tr>
@@ -111,6 +109,8 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
+
 
     </tr>
     <tr>
@@ -119,14 +119,11 @@
       <td></td>
       <td></td>
       <td></td>
+      <td></td>
 
     </tr>
   </tbody>
 </table>
-<form action="/admin/products/<?php echo $products[0]->getId() ?>" method="POST">
-<button class="btn btn-lg btn-block button_color" type="submit">Add Productd</button>
-</form>
-
 <br>
 <br>
 <br>

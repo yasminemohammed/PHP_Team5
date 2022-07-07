@@ -8,44 +8,11 @@ use App\View;
 
 class UserController
 {
-    public function index(): View
-    {
-        dump('we are in index method users');
-        $users = User::all();
-
-        return View::make('users' . DIRECTORY_SEPARATOR . 'index', ['users' => $users]);
-    }
-
-    public function create(): View
-    {
-        return View::make('users' . DIRECTORY_SEPARATOR . 'create');
-    }
-
-    public function store()
-    {
-        $attributes = [];
-        $attributes['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $attributes['firstName'] = $_POST['firstName'];
-        $attributes['lastName'] = $_POST['lastName'];
-        $attributes['ext'] = $_POST['ext'];
-        $attributes['username'] = $_POST['username'];
-
-        $avatar = $_FILES['avatar'] ?? "default.png";
-
-        $filePath = STORAGE_PATH . DIRECTORY_SEPARATOR . 'images' . DIRECTORY_SEPARATOR . $avatar['name'];
-
-        if (isset($_FILES['avatar']))
-            move_uploaded_file($avatar['tmp_name'], $filePath);
-
-        $attributes['avatar'] = $avatar['name'];
-
-        User::create($attributes);
-
-        header("Location: /users");
-    }
-
     public function edit($id): View
     {
+        if (!auth() || $id != auth()?->getId())
+            redirect('/login');
+
         $user = User::getOneBy('id', $id);
 
         if (!$user)
@@ -56,6 +23,9 @@ class UserController
 
     public function update($id)
     {
+        if (!auth() || $id != auth()?->getId())
+            redirect('/login');
+
         $attributes = [];
         $attributes['password'] = password_hash($_POST['password'], PASSWORD_BCRYPT);
         $attributes['firstName'] = $_POST['firstName'];
@@ -77,13 +47,5 @@ class UserController
 
         header("Location: /users");
     }
-
-    public function destroy($id)
-    {
-        User::deleteById($id);
-
-        header("Location: /users");
-    }
-
 
 }

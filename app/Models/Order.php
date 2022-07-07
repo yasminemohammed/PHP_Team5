@@ -33,7 +33,8 @@ class Order extends Model
 
     public function addItems()
     {
-        $query = "SELECT i.id, p.name, quantity, i.amount FROM items AS i, products AS p WHERE order_id = :order_id AND i.product_id = p.id;";
+        $query = "SELECT i.id, p.name, quantity, i.amount, price_per_unit as price
+FROM items AS i, products AS p WHERE order_id = :order_id AND i.product_id = p.id;";
 
         $stmt = App::db()->prepare($query);
         $stmt->bindValue(":order_id", $this->id);
@@ -93,6 +94,24 @@ class Order extends Model
     {
         $this->amount = $amount;
     }
+
+//    public function all(int $id = null): array {
+//
+//        $query = "SELECT o.id, order_date, roomNo, o.amount, os.order_status AS status
+//FROM orders AS o, order_status AS os
+//WHERE customer_id = :customer_id AND o.id = os.order_id;";
+//
+//        $stmt = App::db()->prepare($query);
+//        $stmt->bindValue(":customer_id", $this->id);
+//        $stmt->execute();
+//        $orders = $stmt->fetchAll(PDO::FETCH_CLASS, Order::class);
+//
+//        foreach ($orders as $order) {
+//            $order->addItems();
+//        }
+//
+//        return $orders;
+//    }
 
     public static function create(array $attributes): bool
     {

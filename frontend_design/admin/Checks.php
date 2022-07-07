@@ -15,6 +15,22 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <style>
+
+
+.is-hidden {
+  display: none;
+}
+
+.button {
+  background-color: steelblue;
+  color: #fff;
+  display: inline-block;
+  padding: 10px;
+}
+
+.button.is-open {
+  background-color: red;
+}
         .button_color{
           background-color: #D9AFD9;
 
@@ -129,6 +145,7 @@
   <table class="table g-4" style="width:70% ; margin-left:60px">
   <thead>
     <tr>
+      <th >control</th>
       <th scope="col">ID</th>
       <th scope="col">Name</th>
       <th scope="col">Total Amount</th>
@@ -136,16 +153,20 @@
   </thead>
   <tbody>
     <tr>
-      <th scope="row">1</th>
+    <td><span >+</span></td>
+   <th scope="row">1</th>
       <td></td>
       <td></td>
     </tr>
     <tr>
+    <td><span>+</span></td>
       <th scope="row">2</th>
       <td></td>
       <td></td>
     </tr>
     <tr>
+    <td><span>+</span></td>
+
       <th scope="row">3</th>
       <td ></td>
       <td>
@@ -156,7 +177,7 @@
 
 
 
-<table class="table g-4" style="width:70% ; margin-left:60px">
+<table class="table g-4 toggleTarget is-hidden" style="width:70% ; margin-left:60px">
   <thead>
     <tr>
       <th scope="col">ID</th>
@@ -189,5 +210,36 @@
 </html>
 
     </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+$(function() {
+  $('span').click(function() {
+  
+    // Store state
+    if ($(this).data('is-open')) {
+      $(this).data('is-open', false);
+      $('span').text('+');
+
+
+    } else {
+      $(this).data('is-open', true);
+      $('span').text('_');
+
+
+    }
+    
+    // Toggle class
+    $(this).toggleClass('is-open');
+    $('.toggleTarget').toggleClass('is-hidden');
+
+
+  });
+});
+
+
+
+  </script>
     </body>
     </html>

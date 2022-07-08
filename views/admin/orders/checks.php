@@ -1,8 +1,7 @@
 <?php
 
-//dd($users);
-
 $usersAmounts = [];
+
 
 foreach ($data as $userOrder) {
     $totalAmount = 0;
@@ -82,10 +81,10 @@ foreach ($data as $userOrder) {
         color: red;
     }</style>
 
-<body>
-
-<section style=" height:100% ;background-color: #D9AFD9;
+<body style="background-color: #D9AFD9;
         background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);">
+
+<section>
 
 
     <!-- Navbar -->
@@ -103,25 +102,26 @@ foreach ($data as $userOrder) {
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="home.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Products.php">Products</a>
+                        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/products" ?>">Products</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Users.php">Users</a>
+                        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/users" ?>">Users</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Manual Orders.php">Manual Orders</a>
+                        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/orders/create" ?>">Manual
+                            Orders</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Checks.php">Checks</a>
+                        <a class="nav-link"
+                           href="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/orders" ?>">Checks</a>
                     </li>
-
                 </ul>
             </div>
 
@@ -146,7 +146,7 @@ foreach ($data as $userOrder) {
 
                 <select class="form-select" aria-label="Default select example" name="user_id">
                     <label for="users">Users</label>
-                    <option selected>Users</option>
+                    <option selected value="">Users</option>
                     <?php foreach ($users as $user): ?>
                         <option value="<?php echo $user?->getId(); ?>"><?php echo $user?->getFirstName() . " " . $user?->getFirstName() ?></option>
                     <?php endforeach; ?>
@@ -221,8 +221,6 @@ foreach ($data as $userOrder) {
         </tbody>
     </table>
 
-</body>
-</html>
 </section>
 </body>
 </html>

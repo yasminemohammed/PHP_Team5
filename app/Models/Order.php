@@ -80,8 +80,10 @@ FROM items AS i, products AS p WHERE order_id = :order_id AND i.product_id = p.i
         $stmt->execute();
         $items = $stmt->fetchAll(PDO::FETCH_CLASS, Item::class);
 
+
         foreach ($items as $item)
             $this->addItem($item);
+
     }
 
     public function getId(): int

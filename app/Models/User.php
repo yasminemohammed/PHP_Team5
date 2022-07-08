@@ -168,7 +168,6 @@ WHERE customer_id = :customer_id AND o.id = os.order_id";
         if (isset($endDate))
             $stmt->bindValue(":order_date2", $endDate);
 
-
         $stmt->execute();
         $orders = $stmt->fetchAll(PDO::FETCH_CLASS, Order::class);
 
@@ -178,7 +177,7 @@ WHERE customer_id = :customer_id AND o.id = os.order_id";
 
         $this->orders = $orders;
 
-        return $orders;
+        return $this->orders;
     }
 
     public static function all(string $with = null): array
@@ -191,7 +190,6 @@ WHERE customer_id = :customer_id AND o.id = os.order_id";
 
         $usersArrObjects = [];
         foreach ($users as $user) {
-
             $user = new User($user);
 
             if (isset($with) && $with == Order::class)

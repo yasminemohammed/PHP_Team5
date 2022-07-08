@@ -86,6 +86,20 @@ class Product extends Model
         return $stmt->fetchAll();
     }
 
+    public static function find(int $id): self|bool
+    {
+
+        $query = "SELECT p.id, p.`name`, price, isAvailable, featureImage, c.`name` AS category
+FROM products AS p, categories AS c WHERE p.category_id = c.id AND p.id = :id;";
+
+        $stmt = App::db()->prepare($query);
+        $stmt->bindValue(':id', $id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchObject(Product::class);
+    }
+
+
     public static function create(array $attributes): bool
     {
         $query = "INSERT INTO `products` (`name`, price, featureImage, category_id) VALUES(:name, :price, :featureImage, :category_id)";
@@ -110,5 +124,28 @@ class Product extends Model
 
         return $stmt->execute();
     }
+
+    public function update(array $attributes): self|bool
+    {
+        $query = "UPDATE products SET ";
+
+        foreach ($attributes as $key => $value) {
+            $query .= "$key = :$key,";
+        }
+
+        $query = rtrim($query, ',');
+        $query .= " WHERE id = $this->id";
+
+        $stmt = App::db()->prepare($query);
+
+        foreach ($attributes as $key => $value) {
+            $stmt->bindValue("$key", $value);
+        }
+
+        $stmt->execute();
+
+        return $stmt->fetchObject(Product::class);
+    }
+
 
 }

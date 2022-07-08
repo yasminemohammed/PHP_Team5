@@ -8,7 +8,6 @@ class AdminOrdersMarkDoneController
 {
     public function update($id)
     {
-
         if (!auth())
             redirect('/login');
 

@@ -62,7 +62,7 @@ SimpleRouter::get('/admin/products', [AdminProductsController::class, 'index']);
 SimpleRouter::post('/admin/products', [AdminProductsController::class, 'store']);
 SimpleRouter::get('/admin/products/create', [AdminProductsController::class, 'create']);
 SimpleRouter::get('/admin/products/{id}/edit', [AdminProductsController::class, 'edit']);
-SimpleRouter::put('/admin/products/{id}', [AdminProductsController::class, 'destroy']);
+SimpleRouter::put('/admin/products/{id}', [AdminProductsController::class, 'update']);
 SimpleRouter::delete('/admin/products/{id}', [AdminProductsController::class, 'destroy']);
 
 // admin.categories
@@ -79,6 +79,5 @@ SimpleRouter::put('/admin/orders/{id}/deliver', [AdminOrdersDeliverController::c
 
 // admin orders deliver
 SimpleRouter::put('/admin/orders/{id}/done', [AdminOrdersMarkDoneController::class, 'update']);
-
 
 (new App(new Config($_ENV)))->run();

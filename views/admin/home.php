@@ -112,46 +112,72 @@
     <h2 style="margin-left:50px;">orders</h2>
 
     <!-- tables -->
+    <?php $orderIsExist = false; ?>
     <?php foreach ($users as $user): ?>
         <?php foreach ($user->getOrders() as $order): ?>
+            <?php if ($order->getStatus() != "done"): ?>
+                <?php $orderIsExist = true; ?>
+                <table class="table g-4" style="width:70% ; margin-left:60px">
+                    <thead>
+                    <tr>
+                        <th scope="col">Order Date</th>
+                        <th scope="col"> Name</th>
+                        <th scope="col"> Room</th>
+                        <th scope="col"> Ext</th>
+                        <th scope="col"> Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><?php echo $order?->order_date; ?></td>
+                        <td><?php echo $user->getFirstName() . " " . $user->getLastName(); ?></td>
+                        <td><?php echo $user->getRoomNo(); ?></td>
+                        <td><?php echo $user->getExt(); ?></td>
+                        <td>
+                            <?php if ($order->getStatus() == "processing"): ?>
+                                <form action="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/orders/" . $order?->getId() . "/deliver"; ?>"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="PUT"/>
+                                    <a href="#" id="deliver"
+                                       onclick="event.preventDefault(); event.target.closest('form').submit()">Deliver</a>
+                                </form
+                            <?php endif; ?>
 
-            <table class="table g-4" style="width:70% ; margin-left:60px">
-                <thead>
-                <tr>
-                    <th scope="col">Order Date</th>
-                    <th scope="col"> Name</th>
-                    <th scope="col"> Room</th>
-                    <th scope="col"> Ext</th>
-                    <th scope="col"> Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td><?php echo $order?->order_date; ?></td>
-                    <td><?php echo $user->getFirstName() . " " . $user->getLastName(); ?></td>
-                    <td><?php echo $user->getRoomNo(); ?></td>
-                    <td><?php echo $user->getExt(); ?></td>
-                    <td>*****</td>
-                </tr>
-                <tr>
-                    <td colspan="6" class="row g-0 col-12 justify-content-center">
-                        <?php foreach ($order->getItems() as $item): ?>
-                            <div class="text-center border border-2 p-3 m-3" style="width: 8rem">
-                                <div class="my-2"><?php echo $item->getName(); ?></div>
-                                <div class="my-2"><?php echo "price:" . $item->getPrice(); ?></div>
-                                <div class="my-2"><?php echo "quantity: " . $item->getQuantity(); ?></div>
-                            </div>
-                        <?php endforeach; ?>
-                    </td>
-                    <td colspan="3" style="position: relative">
-                        <div class="text-center h6"
-                             style="width: 6rem; position: absolute; bottom: 1rem"><?php echo "Total: " . $order->getAmount(); ?></div>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
+                            <?php if ($order->getStatus() == "out for delivery"): ?>
+                                <form action="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/orders/" . $order?->getId() . "/done"; ?>"
+                                      method="post">
+                                    <input type="hidden" name="_method" value="PUT"/>
+                                    <a href="#" id="done"
+                                       onclick="event.preventDefault(); event.target.closest('form').submit()">Mark
+                                        Done</a>
+                                </form
+                            <?php endif; ?>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" class="row g-0 col-12 justify-content-center">
+                            <?php foreach ($order->getItems() as $item): ?>
+                                <div class="text-center border border-2 p-3 m-3" style="width: 8rem">
+                                    <div class="my-2"><?php echo $item->getName(); ?></div>
+                                    <div class="my-2"><?php echo "price:" . $item->getPrice(); ?></div>
+                                    <div class="my-2"><?php echo "quantity: " . $item->getQuantity(); ?></div>
+                                </div>
+                            <?php endforeach; ?>
+                        </td>
+                        <td colspan="3" style="position: relative">
+                            <div class="text-center h6"
+                                 style="width: 6rem; position: absolute; bottom: 1rem"><?php echo "Total: " . $order->getAmount(); ?></div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            <?php endif; ?>
         <?php endforeach; ?>
     <?php endforeach; ?>
+
+    <?php if (!$orderIsExist): ?>
+        <h1 class="text-center" style="margin-top: 10rem">There are no orders at moment.</h1>
+    <?php endif; ?>
 
 </section>
 </body>

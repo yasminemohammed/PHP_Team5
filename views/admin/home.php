@@ -64,10 +64,10 @@
         color: red;
     }</style>
 
-<body>
-
-<section style=" height:100% ;background-color: #D9AFD9;
+<body style="background-color: #D9AFD9;
         background-image: linear-gradient(0deg, #D9AFD9 0%, #97D9E1 100%);">
+
+<section>
 
 
     <!-- Navbar -->
@@ -85,26 +85,26 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0 align">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="home.php">Home</a>
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Products.php">Products</a>
+                        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/products" ?>">Products</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Users.php">Users</a>
+                        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/users" ?>">Users</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Manual Orders.php">Manual Orders</a>
+                        <a class="nav-link" href="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/orders/create" ?>">Manual
+                            Orders</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="Checks.php">Checks</a>
+                        <a class="nav-link"
+                           href="http://<?php echo $_SERVER['HTTP_HOST'] . "/admin/orders" ?>">Checks</a>
                     </li>
-
-                </ul>
             </div>
 
         </div>
@@ -112,49 +112,47 @@
     <h2 style="margin-left:50px;">orders</h2>
 
     <!-- tables -->
-    <table class="table g-4" style="width:70% ; margin-left:60px">
-        <thead>
-        <tr>
-            <th scope="col">Order Date</th>
-            <th scope="col"> Amount</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php foreach ($orders as $order): ?>
-            <tr>
-                <td><?php echo $order?->order_date; ?></td>
-                <td><?php echo $order?->getAmount(); ?></td>
-            </tr>
-            <tr>
-                <table class="table g-4" style="width:70% ; margin-left:60px">
-                    <tbody>
-                    <tr>
-                        <div class="d-flex flex-row bd-highlight mb-3 ml justify-content-center">
-                            <?php foreach ($order?->getItems() as $item): ?>
-                                <div class="p-4 border border-3 m-5">
-                                    <div>
-                                        <?php echo $item?->getName() ?>
-                                    </div>
-                                    <div>
-                                        <?php echo "quantity: " . $item?->getQuantity() ?>
-                                    </div>
-                                    <div>
-                                        <?php echo "price: " . $item?->getPrice() ?>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                    </tr>
-                    </tbody>
-                </table>
-            </tr>
+    <?php foreach ($users as $user): ?>
+        <?php foreach ($user->getOrders() as $order): ?>
+
+            <table class="table g-4" style="width:70% ; margin-left:60px">
+                <thead>
+                <tr>
+                    <th scope="col">Order Date</th>
+                    <th scope="col"> Name</th>
+                    <th scope="col"> Room</th>
+                    <th scope="col"> Ext</th>
+                    <th scope="col"> Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td><?php echo $order?->order_date; ?></td>
+                    <td><?php echo $user->getFirstName() . " " . $user->getLastName(); ?></td>
+                    <td><?php echo $user->getRoomNo(); ?></td>
+                    <td><?php echo $user->getExt(); ?></td>
+                    <td>*****</td>
+                </tr>
+                <tr>
+                    <td colspan="6" class="row g-0 col-12 justify-content-center">
+                        <?php foreach ($order->getItems() as $item): ?>
+                            <div class="text-center border border-2 p-3 m-3" style="width: 8rem">
+                                <div class="my-2"><?php echo $item->getName(); ?></div>
+                                <div class="my-2"><?php echo "price:" . $item->getPrice(); ?></div>
+                                <div class="my-2"><?php echo "quantity: " . $item->getQuantity(); ?></div>
+                            </div>
+                        <?php endforeach; ?>
+                    </td>
+                    <td colspan="3" style="position: relative">
+                        <div class="text-center h6"
+                             style="width: 6rem; position: absolute; bottom: 1rem"><?php echo "Total: " . $order->getAmount(); ?></div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         <?php endforeach; ?>
-        </tbody>
-    </table>
+    <?php endforeach; ?>
 
-
-</body>
-</html>
 </section>
 </body>
 </html>

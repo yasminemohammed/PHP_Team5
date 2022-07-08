@@ -208,5 +208,16 @@ FROM items AS i, products AS p WHERE order_id = :order_id AND i.product_id = p.i
         return $stmt->execute();
     }
 
+    public function markDone(): self
+    {
+        $query = "UPDATE order_status SET order_status = 'done' WHERE order_id = $this->id";
+
+        $stmt = App::db()->prepare($query);
+        if ($stmt->execute())
+            $this->setStatus('done');
+
+        return $this;
+    }
+
 
 }

@@ -7,6 +7,7 @@ use App\Config;
 use App\Controllers\Admin\AdminCategoriesController;
 use App\Controllers\Admin\AdminOrdersController;
 use App\Controllers\Admin\AdminOrdersDeliverController;
+use App\Controllers\Admin\AdminOrdersMarkDoneController;
 use App\Controllers\Admin\AdminProductsController;
 use App\Controllers\Admin\AdminUsersController;
 use App\Controllers\AuthController;
@@ -73,8 +74,11 @@ SimpleRouter::get('/admin/orders', [AdminOrdersController::class, 'index']);
 SimpleRouter::get('/admin/orders/create', [AdminOrdersController::class, 'create']);
 SimpleRouter::post('/admin/orders', [AdminOrdersController::class, 'store']);
 
-SimpleRouter::put('/admin/orders/{id}/deliver', [AdminOrdersDeliverController::class, 'update']);
 // admin orders deliver
+SimpleRouter::put('/admin/orders/{id}/deliver', [AdminOrdersDeliverController::class, 'update']);
+
+// admin orders deliver
+SimpleRouter::put('/admin/orders/{id}/done', [AdminOrdersMarkDoneController::class, 'update']);
 
 
 (new App(new Config($_ENV)))->run();

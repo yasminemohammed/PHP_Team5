@@ -17,6 +17,7 @@ class User extends Model
     private ?string $avatar;
     private ?int $roomNo;
     private int $role;
+    private array $orders;
 
 
     public function __construct(array $attributes)
@@ -30,8 +31,21 @@ class User extends Model
         $this->avatar = $attributes['avatar'];
         $this->roomNo = $attributes['roomNo'];
         $this->role = $attributes['role'];
+
+        $this->orders = [];
     }
 
+
+    public function addOrder(Order $order): self
+    {
+        $this->orders[] = $order;
+        return $this;
+    }
+
+    public function getOrders(): array
+    {
+        return $this->orders;
+    }
 
     public function getId(): int
     {
@@ -162,10 +176,12 @@ WHERE customer_id = :customer_id AND o.id = os.order_id";
             $order->addItems();
         }
 
+        $this->orders = $orders;
+
         return $orders;
     }
 
-    public static function all(): array
+    public static function all(string $with = null): array
     {
         $query = "SELECT id, firstName, lastName, username,email, ext, avatar, roomNo, role FROM users WHERE role = 0;";
         $stmt = App::db()->prepare($query);
@@ -175,7 +191,13 @@ WHERE customer_id = :customer_id AND o.id = os.order_id";
 
         $usersArrObjects = [];
         foreach ($users as $user) {
-            $usersArrObjects[] = new User($user);
+
+            $user = new User($user);
+
+            if (isset($with) && $with == Order::class)
+                $user->orders();
+
+            $usersArrObjects[] = $user;
         }
 
         return $usersArrObjects;

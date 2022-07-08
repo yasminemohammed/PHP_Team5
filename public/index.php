@@ -73,5 +73,8 @@ SimpleRouter::get('/admin/orders', [AdminOrdersController::class, 'index']);
 SimpleRouter::get('/admin/orders/create', [AdminOrdersController::class, 'create']);
 SimpleRouter::post('/admin/orders', [AdminOrdersController::class, 'store']);
 
+SimpleRouter::put('/admin/orders/{id}/deliver', [AdminOrdersDeliverController::class, 'update']);
+// admin orders deliver
+
 
 (new App(new Config($_ENV)))->run();
